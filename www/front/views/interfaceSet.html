@@ -1,0 +1,461 @@
+<div class="mainpage_bgc">
+    <div class="overview_mainPageType">
+        <div class="mainpage_head">
+            <img src="assets/images/interface.png" class="floatLeft" style="margin-left: 30px">
+
+            <div class="mainpage_name">接口配置</div>
+            <div class="mainpage_ename">Interface&nbsp;Configuration</div>
+        </div>
+        <div class="vlineShow"></div>
+        <div class="tabbable tabbable-custom tabbable-full-width" class="marginTop20">
+            <ul class="nav nav-tabs" style="margin-right: -20px;margin-left: 25px">
+                <li class="active">
+                    <a href="#interfacePage" data-toggle="tab">接口配置</a>
+                </li>
+                <li>
+                    <a href="#changeInterfacePage" data-toggle="tab">LAN/WAN</a>
+                </li>
+            </ul>
+            <div class="tab-content pageSizeSet" style="height: 100%;overflow-y:auto">
+                <div id="interfacePage" class="tab-pane active overflow1200">
+                    <div class="pageSizeSet1">
+                        <input type="button" class="btn btn-primary" id="interfaceAdd"
+                               value="添加" ng-click="interfaceAdd()">
+                    </div>
+                    <div id="bridgePage">
+                        <div style="margin-right: 40px" class="pageSizeSet">
+                            <div id="interfaceTab"></div>
+                        </div>
+                    </div>
+                    <div id="gatewayPage">
+                        <div style="margin-right: 40px" class="pageSizeSet">
+                            <div id="gatewayTab"></div>
+                        </div>
+                    </div>
+                    <div id="bypassPage">
+                        <div style="margin-right: 40px" class="pageSizeSet">
+                            <div id="bypassTab"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="changeInterfacePage" class="tab-pane overflow1200">
+                    <label><span class="friendlyMsg marginLeft10">提示：默认的WAN口和LAN口无法进行切换</span></label>
+                    <div class="vlineShow clear"></div>
+                    <div style="padding: 10px 25px;height: 150px">
+                        <div ng-repeat="data in interface_info" class="floatLeft marginLeft10" style="width: 120px;border: 1px #abc solid;background-color: rgba(40, 152, 226, 0.07)">
+                            <div style="margin-bottom:5px;font-size: 16px;margin-left: 35px"><span ng-bind="data.name"></span></div>
+                            <div class="floatLeft" style="margin-left: 35px">
+                                <a ng-click="interfaceMsg()">
+                                    <img alt="{{data.name}}" style="cursor: pointer;"
+                                         ng-src="assets/images/online.png"/>
+                                </a>
+                            </div>
+                            <div style="margin-bottom:5px;font-size: 8px;color: #797979;border-bottom: 10px;margin-top: 50px">
+                                <select style="width: 100px;margin-left: 10px" class="form-control" ng-model="data.status" name="{{data.name}}" ng-disabled="!data.change">
+                                    <option value="wan">WAN</option>
+                                    <option value="lan">LAN</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-left: 40px">
+                        <input class="btnheight btn btn-primary" value="保存LAN/WAN切换" type="button" ng-click="saveChange()">
+                    </div>
+                </div>
+                <div class="vlineShow clear"></div>
+                <div class="foot" id="footPage"
+                     style="display:-webkit-flex;justify-content:center;align-items:center;">
+                    <font style="color: #abc;font-size: 12px">Copyright 2016-2019 任子行网络技术股份有限公司</font>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal modal-white" id="interface_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 700px">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="dialog_cancel(1)">&times;</button>
+                <h4 class="modal-title ng-binding">网口配置规则编辑</h4>
+            </div>
+            <form id="interfaceForm">
+                <div class="modal-body clearfix">
+                    <div class="marginTop20" style="display: none">
+                        <font class="title">选择模式</font>
+                        <select class="interfaceInput" id="mode" name="mode" disabled>
+                            <option value="bridge" selected>网桥模式</option>
+                            <option value="bypass">旁路模式</option>
+                            <option value="gateway">网关模式</option>
+                            <option value="bypass">旁路模式</option>
+                        </select>
+                    </div>
+                    <div class="clear"></div>
+                    <div style="margin-top: 20px;display: none">
+                        <font class="title">新增或者编辑</font>
+                        <input class="interfaceInput" id="addOrNot">
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">名称</font>
+                        <select class="interfaceInput form-control select110" id="name" name="name">
+                        </select>
+                    </div>
+                    <div class="clear"></div>
+                    <div style="margin-top: 20px;display: none">
+                        <font class="title">MAC</font>
+                        <input class="interfaceInput" id="mac" name="mac"><span
+                            class="friendlyMsg">例：12:13:14:15:16:17</span>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">绑定接口</font>
+
+                        <div style="margin-left: 10px;height: 30px;float: left;margin-top: 5px" id="interfaceZone">
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div id="noBypass">
+                        <div id="noVlan">
+                            <div class="marginTop20">
+                                <font class="title">IP地址</font>
+                                <input class="interfaceInput  width185 form-control" id="ip" name="ip" required><span
+                                    class="friendlyMsg">*例：192.168.1.1</span>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="marginTop20">
+                                <font class="title">子网掩码</font>
+                                <input class="interfaceInput  width185 form-control" id="mask" name="mask" required><span
+                                    class="friendlyMsg">*例：255.255.255.0</span>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="marginTop20">
+                            <div class="floatLeft">
+                                <font class="title">VLAN透传</font>
+                            </div>
+                            <div style="margin-left: 30px;float: left">
+                                <div id="div9" class="close1">
+                                    <div id="div10" class="close2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20" id="vlan_TableForm" style="display: none">
+                        <div><input type="button" class="btnheight btn btn-primary" id="addVlan"
+                                    style="margin-left: 100px" value="新增"></div>
+                        <div class="floatLeft">
+                            <div id="vlan_Table" style="width: 500px;margin-left: 100px;"></div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="errMsg marginTop20" style="text-align: center">
+                        <font style="display: none;text-align: center" id="errorMsg">绑定接口</font>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btnheight btn btn-primary" id="dialog_resetProduct">确定</button>
+                    <button type="button" class="btnheight btn btn-danger" data-dismiss="modal" ng-click="dialog_cancel(1)">取消
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal modal-white" id="gateway_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 700px">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="dialog_cancel(2)">&times;</button>
+                <h4 class="modal-title ng-binding">网口配置规则编辑</h4>
+            </div>
+            <form id="gatewayForm" name="gatewayForm" class="bs-example form-horizontal form-validation">
+                <div class="modal-body clearfix">
+                    <div class="marginTop20">
+                        <font class="title">名称</font>
+                        <select class="interfaceInput form-control select110" id="gatewayName" name="name" ng-model="gatewayLineData.name" disabled>
+                            <option value="eth0">WAN1</option>
+                            <option value="eth1">WAN2</option>
+                            <option value="eth2">WAN3</option>
+                            <option value="eth3">WAN4</option>
+                        </select>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">绑定接口</font>
+                        <select class="interfaceInput form-control select110" id="gatewayEth" name="name" ng-model="gatewayLineData.name" disabled>
+                            <option value="eth0">eth0</option>
+                            <option value="eth1">eth1</option>
+                            <option value="eth2">eth2</option>
+                            <option value="eth3">eth3</option>
+                        </select>
+                    </div>
+                    <div class="clear"></div>
+                    <div style="margin-top: 20px">
+                        <font class="title">运营商</font>
+                        <select class="interfaceInput form-control select110" id="isp" name="isp" ng-model="gatewayLineData.isp">
+                            <option value="telecom">中国电信</option>
+                            <option value="cernet">中国教育网</option>
+                            <option value="cmcc">中国移动</option>
+                            <option value="crtc">中国铁通</option>
+                            <option value="unicom">中国联通（网通）</option>
+                            <option value="othernet">其他运营商</option>
+                        </select><span class="friendlyMsg"></span>
+                    </div>
+                    <div class="clear"></div>
+                    <div style="margin-top: 20px">
+                        <font class="title">上行带宽</font>
+                        <input class="interfaceInput  width185 form-control" name="upbw" ng-model="gatewayLineData.upbw" type="number" min="1" max="1000" ng-pattern="/^[0-9]*[1-9][0-9]*$/"><span
+                            class="friendlyMsg">Mbps(1-1000)不配时默认为10</span>
+                    </div>
+                    <div class="clear"></div>
+                    <div style="margin-top: 20px">
+                        <font class="title">下行带宽</font>
+                        <input class="interfaceInput  width185 form-control" name="downbw" ng-model="gatewayLineData.downbw" type="number" min="1" max="1000" ng-pattern="/^[0-9]*[1-9][0-9]*$/"><span
+                            class="friendlyMsg">Mbps(1-1000)不配时默认为10</span>
+                    </div>
+                    <div class="clear"></div>
+                    <div style="margin-top: 20px">
+                        <font class="title">上网方式</font>
+                        <select class="interfaceInput form-control select110" name="proto" ng-model="gatewayLineData.proto" id="prototypeChange">
+                            <option value="dhcp">自动获取（DHCP）</option>
+                            <option value="pppoe">拨号上网（PPPOE拨号）</option>
+                            <option value="static">静态配置</option>
+                        </select>
+                    </div>
+                    <div class="clear"></div>
+                    <div id="dhcpType">
+                        <div style="margin-top: 20px">
+                            <font class="title">自动获取IP：</font>
+                            <input class="interfaceInput  width185 form-control" name="ip" ng-model="gatewayLineData.ip" disabled>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div id="pppoeType">
+                        <div style="margin-top: 20px">
+                            <font class="title">账号</font>
+                            <input class="interfaceInput  width185 form-control" name="username" ng-model="gatewayLineData.username">
+                        </div>
+                        <div class="clear"></div>
+                        <div style="margin-top: 20px">
+                            <font class="title">密码</font>
+                            <input class="interfaceInput  width185 form-control" name="password" ng-model="gatewayLineData.password" type="password">
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div id="staticType">
+                        <div style="margin-top: 20px">
+                            <font class="title">IP</font>
+                            <input class="interfaceInput  width185 form-control" name="ip" ng-model="gatewayLineData.ip" ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/">
+                        </div>
+                        <div class="clear"></div>
+                        <div style="margin-top: 20px">
+                            <font class="title">子网掩码</font>
+                            <input class="interfaceInput  width185 form-control" name="mask" ng-model="gatewayLineData.mask" ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/">
+                        </div>
+                        <div class="clear"></div>
+                        <div style="margin-top: 20px">
+                            <font class="title">网关地址</font>
+                            <input class="interfaceInput  width185 form-control" name="mask" ng-model="gatewayLineData.gateway" ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/">
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div style="margin-top: 20px">
+                        <!--<font class="title">MAC地址</font>-->
+                        <!--<input class="interfaceInput  width185 form-control" name="mac" ng-model="gatewayLineData.mac" placeholder="空值表示默认出厂MAC" disabled>-->
+                        <font class="title"></font>
+                        <input type="button" class="btn btn-info marginLeft10" ng-click="moreDevSet()" value="高级选项">
+                    </div>
+                    <div class="clear"></div>
+                    <div id="moreDevSet" ng-hide="moreDev">
+                        <div style="margin-top: 20px">
+                            <font class="title">MAC地址</font>
+
+                            <input class="interfaceInput  width185 form-control" name="mac" ng-model="gatewayLineData.mac" placeholder="空值表示默认出厂MAC" ng-pattern="/^[A-Fa-f\d]{2}:[A-Fa-f\d]{2}:[A-Fa-f\d]{2}:[A-Fa-f\d]{2}:[A-Fa-f\d]{2}:[A-Fa-f\d]{2}$/" disabled>
+
+                            <input type="button" class="btn btn-info" ng-click="resetMac()" value="恢复出厂MAC">
+                        </div>
+                        <div class="clear"></div>
+                        <div style="margin-top: 20px">
+                            <font class="title">当前管理PC的MAC地址</font>
+                            <input class="interfaceInput  width185 form-control" name="pc_mac" ng-model="network.pc_mac" disabled>
+                            <input type="button" class="btn btn-info" ng-click="copyMac()" value="MAC地址克隆">
+                        </div>
+                        <div class="clear"></div>
+                        <div style="margin-top: 20px">
+                            <font class="title">MTU</font>
+                            <input class="interfaceInput  width185 form-control" name="mtu" ng-model="gatewayLineData.mtu" type="number" max="1500" min="1024" ng-pattern="/^[0-9]*[1-9][0-9]*$/"><span
+                                class="friendlyMsg">范围为1024-1500</span>
+                        </div>
+                        <div class="clear"></div>
+                        <div style="margin-top: 20px">
+                            <font class="title">接口模式</font>
+                            <select class="interfaceInput form-control select185" id="rate" name="rate" ng-model="gatewayLineData.rate">
+                                <option value="full-10">全双工10M</option>
+                                <option value="half-10">半双工10M</option>
+                                <option value="full-100">全双工100M</option>
+                                <option value="half-100">半双工100M</option>
+                                <option value="full-1000">全双工1000M</option>
+                                <option value="auto">自动</option>
+                            </select><span class="friendlyMsg"></span>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btnheight btn btn-primary"  ng-disabled="gatewayForm.$invalid" ng-click="saveGateway()">确定</button>
+                    <button type="button" class="btnheight btn btn-danger" data-dismiss="modal" ng-click="dialog_cancel(2)">取消
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal modal-white" id="bypass_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 700px">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="dialog_cancel(3)">&times;</button>
+                <h4 class="modal-title ng-binding">网口配置规则编辑</h4>
+            </div>
+            <form id="bypassForm" name="bypassForm" class="bs-example form-horizontal form-validation">
+                <div class="modal-body clearfix">
+                    <div class="marginTop20">
+                        <font class="title">名称</font>
+                        <select class="interfaceInput form-control select110" name="name" ng-model="bypassLineData.name" disabled>
+                            <option value="eth0">上网口</option>
+                            <option value="eth1">管理口</option>
+                        </select>
+                    </div>
+                    <div class="clear"></div>
+                    <div style="margin-top: 20px">
+                        <font class="title">IP</font>
+                        <input class="interfaceInput  width185 form-control" name="ip" ng-model="bypassLineData.ip" ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/">
+                    </div>
+                    <!--<div class="clear"></div>-->
+                    <!--<div style="margin-top: 20px;display: none">-->
+                        <!--<font class="title">上网方式</font>-->
+                        <!--<input class="interfaceInput  width185 form-control" name="proto" value="bypassLineData.proto" ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/">-->
+                    <!--</div>-->
+                    <div class="clear"></div>
+                    <div style="margin-top: 20px">
+                        <font class="title">子网掩码</font>
+                        <input class="interfaceInput  width185 form-control" name="mask" ng-model="bypassLineData.mask" ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/">
+                    </div>
+                    <div class="clear"></div>
+                    <div style="margin-top: 20px" ng-hide="control">
+                        <font class="title">网关地址</font>
+                        <input class="interfaceInput  width185 form-control" name="gateway" ng-model="bypassLineData.gateway" ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/">
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btnheight btn btn-primary"  ng-disabled="bypassForm.$invalid" ng-click="saveBypass()">确定</button>
+                    <button type="button" class="btnheight btn btn-danger" data-dismiss="modal" ng-click="dialog_cancel(2)">取消
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal modal-white" id="vlan_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title ng-binding">VLAN配置查看</h4>
+            </div>
+            <div class="modal-body clearfix">
+                <input id="interfaceName" style="display: none">
+                <button class="btnheight btn btn-primary" id="add_vlan">添加</button>
+                <div id="vlanTable"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal modal-white" id="vlanEdit_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 700px">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title ng-binding">添加网口配置规则</h4>
+            </div>
+            <form id="vlanEditForm">
+                <div class="modal-body clearfix">
+                    <div style="margin-top: 20px;display: none">
+                        <font class="title">新增或者编辑</font>
+                        <input class="interfaceInput" id="addOrNotVlan">
+                    </div>
+                    <div class="clear"></div>
+                    <div style="margin-top: 20px;">
+                        <font class="title">VLAN ID</font>
+                        <input class="interfaceInput width185 form-control" id="vlan_id" name="vlan_id" type="number" required>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">IP地址</font>
+                        <input class="interfaceInput width185 form-control" id="ip_vlan" name="ip" required><span
+                            class="friendlyMsg">*例：192.168.1.1</span>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">子网掩码</font>
+                        <input class="interfaceInput width185 form-control" id="mask_vlan" name="mask" required><span
+                            class="friendlyMsg">*例：255.255.255.0</span>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btnheight btn btn-primary" id="dialog_vlanSave">确定</button>
+                    <button type="button" class="btnheight btn btn-danger" data-dismiss="modal">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal modal-white" id="vlanEdit_dialog2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 700px">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title ng-binding">添加网口配置规则</h4>
+            </div>
+            <form id="vlanEditForm2">
+                <div class="modal-body clearfix">
+                    <div style="margin-top: 20px;display: none">
+                        <font class="title">新增或者编辑</font>
+                        <input class="interfaceInput" id="addOrNotVlan2">
+                    </div>
+                    <div class="clear"></div>
+                    <div style="margin-top: 20px;">
+                        <font class="title">VLAN ID</font>
+                        <input class="interfaceInput width185 form-control" id="vlan_id2" name="vlan_id" required>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">IP地址</font>
+                        <input class="interfaceInput width185 form-control" id="ip_vlan2" name="ip" required><span
+                            class="friendlyMsg">*例：192.168.1.1</span>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">子网掩码</font>
+                        <input class="interfaceInput width185 form-control" id="mask_vlan2" name="mask" required><span
+                            class="friendlyMsg">*例：255.255.255.0</span>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btnheight btn btn-primary" id="dialog_vlanSave2">确定</button>
+                    <button type="button" class="btnheight btn btn-danger" data-dismiss="modal">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

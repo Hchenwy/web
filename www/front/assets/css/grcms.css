@@ -1,0 +1,379 @@
+/*折叠表单动画*/
+ .zdwxsz{
+     overflow-y:auto ;
+     height: 0
+ }
+/*设备列表弹出框宽度*/
+.grcms-width90{
+    width: 90% !important;
+}
+ .grcms-width65{
+     width: 65% !important;
+ }
+.loginCss{
+    background-image:url('../img/login-beijing.png');
+    background-size:cover;
+    /*height: 900px;*/
+    width: 100%;
+    margin:0 auto;
+    color: rgb(255, 255, 255);
+    /*-webkit-box-shadow:0 0 10px 15px #0CC;*/
+    /*-moz-box-shadow:0 0 10px 15px #0CC;*/
+    /*box-shadow:10px 10px 10px 15px #1057B1;*/
+}
+.yunyingzx{
+    margin: 0 auto;
+    font-size:25px;
+    /*color: #ffffff;*/
+    text-align: center;
+}
+.yyzxmenu{
+    position: relative;
+    top: 100px;
+}
+.daquliebiao{
+    padding:0;
+}
+.daquliebiao li{
+
+    list-style-type:none;
+}
+.colorw{
+    padding: 0 !important;
+}
+.colorw ul li a span{
+    /*color: #ffffff !important;*/
+}
+.back_w{
+    background-color: #ffffff;
+    height: 691px;
+}
+.sbglmenu{
+    padding-left:0 !important;
+    padding-right: 0 !important;
+}
+.pfs{
+    padding: 25px 15px;
+}
+.menudianji{
+    background-color: rgb(125, 203, 224);
+}
+.paddding0{
+    padding: 0;
+}
+/*设备登记*/
+ .dengjiwb{
+     width: 90%;
+ }
+ /*省份区域*/
+
+ /*.app_province{*/
+  /*width: 60px;*/
+ /*}*/
+  .province{
+      text-align: center;
+      line-height: 45px;
+      width: 65px;
+      background-color: #67bbff;
+height: 45;
+      margin: 10px;
+      border-radius:5px !important;
+float: left;
+  }
+  /*.gradeprovince{*/
+      /*background-color: #E9E9F5;*/
+      /*height: 300px;*/
+
+      /*width: 100%;*/
+   /*border-top: solid 2px rgb(168, 190, 239);*/
+  /*}*/
+  .dq_select{
+      height: 26px;
+  }
+  /*导入本地版本按钮*/
+ .sendButt{
+     float:left;
+     background: #007DD0;
+     font: normal 14px/35px Arial, '微软雅黑','新宋体';
+     color: #fff;
+     padding: 0 15px;
+     margin: 0 5px;
+     border: none;
+ }
+ /*任务列表*/
+ .stopTask{
+     margin-right: 20px;
+
+
+ }
+ /*模板管理-选择模板*/
+ .selectTemplate{
+     position: relative;
+     top: 1px;
+     width: 150px;
+     height: 34px;
+ }
+ .templateTab{
+     position: relative;
+     top: 10px;
+ }
+ .hei400{
+     height: 400px;
+ }
+ .float_right{
+    text-align: right;
+ }
+ .sele{
+     height: 32px;
+     width: 100px;
+ }
+ .template_Tab_Content .tab-pane{
+     overflow:auto;
+     height: 270px;
+ }
+ .mag15{
+    padding: 15px;
+   margin: 15px;
+ }
+ .wxpzinp{
+     width: 174px ;
+     height: 26px;
+ }
+
+ .text_ali_center{
+     text-align: center;
+ }
+ /*上网认证*/
+ .rzsele{
+     width: 174px;
+
+ }
+ .vpnhide{
+     display: none;
+ }
+ .hei34{
+     height: 34px;
+ }
+ .reto10{
+     position: relative;
+     bottom: 10px;
+ }
+ /* 设置滚动条的样式 */
+ ::-webkit-scrollbar {
+     width: 5px;
+ }
+ /* 滚动槽 */
+ ::-webkit-scrollbar-track {
+     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+     border-radius: 10px;
+ }
+ /* 滚动条滑块 */
+ ::-webkit-scrollbar-thumb {
+     border-radius: 10px;
+     background: rgba(0,0,0,0.1);
+     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+ }
+ ::-webkit-scrollbar-thumb:window-inactive {
+     background: rgba(255,0,0,0.4);
+ }
+ .form_empty{
+     border:1px solid #a94442;
+ }
+ .vp-cz{
+     position: relative;
+     margin-left: 15px;
+ }
+ .magleft86{
+     margin-left: 86px;
+ }
+ .vpnsave{
+     margin-left: 194px;
+     margin-top: 5px;
+ }
+ .dmnwwid{
+     width: 480px !important;
+ }
+ .magbottom15{
+    margin-bottom: 15px;
+ }
+ .flleft{
+     text-align: left !important;
+ }
+ .tsColor{
+     color:rgb(203, 97, 72);
+ }
+ .wczt{
+     /*color: rgb(134, 132, 132);*/
+     visibility: collapse;
+ }
+ /*.snText{*/
+     /*position: absolute;*/
+     /*top: -2000px;*/
+ /*}*/
+ .cwbd{
+     border: solid 2px #ff5546;
+ }
+ .snText{
+     position: fixed;
+     left: -9999px;
+
+ }
+ .rjsjxx{
+     width: 100%;
+     max-width: 100%;
+ }
+ .radiobox-inline{
+     float: left;
+     margin-left:40px;
+ }
+ .sjkd{
+     width: 150px;
+ }
+ /*登录2页面*/
+ .loginbg{
+     position: absolute;
+     margin: 0 auto;
+     top: 0;
+     bottom: 0;
+     width: 1287px;
+background: url("../img/login-beijing.png") no-repeat;
+
+ }
+ .login_form{
+   position: absolute;
+     width: 400px;
+     height: 350px;
+     background: #ffffff;
+     border:3px solid #ffffff;
+     border-radius: 15px !important;
+     right: 150px;
+     top: 200px;
+ }
+ .blue_title{
+
+     margin-left: 30px;
+     color: #4875ff;
+ }
+ .dlbd{
+     line-height: 34px;
+     margin-top: 40px;
+ }
+ .cjzk{
+     line-height: 40px;
+     position: absolute;
+     width: 400px;
+     height: 40px;
+     background: rgba(255, 255, 255, 0.40);
+     border:1px solid rgba(255, 255, 255, 0.40);
+     border-radius: 10px !important;
+     right: 150px;
+     top: 20px;
+ }
+ .login_top li{
+     margin-left: 20px;
+     float: left;
+     list-style-type: none;
+ }
+ .img-clh{
+     width: 250px;
+     position: absolute;
+     top: 5px;
+ }
+ .xxafocus a:focus{
+     background-color: rgba(255, 0, 0, 0) !important;
+ }
+ .ztbs{
+    /* color: #ffffff !important;
+     font-weight: 700;*/
+     margin-right: 15px;
+ }
+ .bggg{
+     margin-left: auto;
+     margin-right: auto;
+     width:180px;
+     height: 180px;
+     padding: 8px;
+     border:1px solid rgb(68, 162, 245);
+     border-radius:50% !important;
+     background-clip:content-box !important;
+ }
+.ybk_jzgl{
+    background: url('../img/JZGL-LOGO.png')rgb(199, 222, 240) no-repeat 13px 15px;
+}
+ .ybk_jzglyr{
+    background: url('../img/JZGL-LOGO-BASE.png')rgb(68, 162, 245) no-repeat 13px 15px;
+}
+ .ybk_xtgl{
+     background: url('../img/SBDJ-LOGO.png')rgb(199, 222, 240) no-repeat 13px 15px;
+ }
+ .ybk_xtglyr{
+     background: url('../img/SBDJ-LOGO-BAISE.png')rgb(68, 162, 245) no-repeat 13px 15px;
+ }
+ .ybk_ggxf{
+     background: url('../img/GGYX-LOGO.png')rgb(199, 222, 240) no-repeat 13px 15px;
+ }
+ .ybk_ggxfyr{
+     background: url('../img/GGYX-LOGO-BAISE.png')rgb(68, 162, 245) no-repeat 13px 15px;
+ }
+ .rightdq{
+     text-align: right;
+ }
+ .rowjj{
+     line-height: 25px;
+     margin: 0 !important;
+ }
+ .bg_bgs{
+     overflow: auto;
+     background-color: rgb(242, 244, 240);
+     /*height: 500px;*/
+
+ }
+ .hei500{
+     height: 500px;
+     overflow: auto;
+ }
+ .mgleft50{
+     margin-left: 50px;
+ }
+ .color-blue{
+     color: #2780ff !important;
+ }
+ .mbmccwxx{
+     position: absolute;
+     top: 15px;
+     margin-left: 200px;
+     color: rgb(231, 98, 98);
+ }
+ .backStbrl{
+     background-color: rgb(61, 86, 165);
+     position: absolute;
+     top: 0;
+     bottom: 0;
+     right: 0;
+     left: 0;
+ }
+/* left menu */
+.top52{
+    position: relative;
+    top: 53px;
+}
+.grcms-sidebar-menu{
+    list-style: none;
+    padding: 0;
+}
+/*.grcms-sidebar-menu ul{*/
+    /*padding: 0 !important;*/
+    /*margin: 0 !important;*/
+/*}*/
+.grcms-sidebar-menu li a{
+    display: block;
+    position: relative;
+    margin: 0;
+    border: 0px;
+    padding: 25px 15px;
+    text-decoration: none;
+    font-size: 25px;
+}
+.grcms-sidebar-menu li a i{
+    font-size: 25px;
+}

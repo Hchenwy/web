@@ -1,0 +1,7 @@
+{
+  "device_version_path": "/etc/version",
+  "update_version_path": "/opt/RG_BCR_X86/etc/version",
+  "destination_path": "/etc/config",
+  "update_path": "/opt/RG_BCR_X86/etc/config",
+  "backup_path": "/etc/backup"
+}

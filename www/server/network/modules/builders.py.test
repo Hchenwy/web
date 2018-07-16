@@ -1,0 +1,157 @@
+# -*- coding: utf-8 -*-
+import os
+
+
+class BridgeBuilder(object):
+    ADD = 'brctl addbr {bridge_name}'
+    DEL = 'brctl delbr {bridge_name}'
+    ADD_IF = 'brctl addif {bridge_name} {intf_name}'
+    DEL_IF = 'brctl delif {bridge_name} {intf_name}'
+    SHOW = '''brctl show | awk '{print($1)}' '''
+
+    def __init__(self):
+        self.network = NetworkBuilder()
+
+    def make_bridge(self, bridge_name, interfaces):
+        self.destroy_bridge(bridge_name)
+        # set bridge
+        print_cmd(self.ADD.format(bridge_name=bridge_name))
+        # os.system(self.ADD.format(bridge_name=bridge_name))
+        self.network.up_interface(bridge_name)
+        # add interfaces to bridge
+        if isinstance(interfaces, list):
+            for interface in interfaces:
+                print_cmd(self.ADD_IF.format(bridge_name=bridge_name, intf_name=interface))
+                # os.system(self.ADD_IF.format(bridge_name=bridge_name, intf_name=interface))
+                self.network.up_interface(interface)
+
+    def destroy_bridge(self, bridge_name):
+        # flag = os.system(self.DEL.format(bridge_name))
+        # test
+        flag = True
+        if not flag:
+            return False
+        return True
+
+    def destroy_all(self):
+        ls = self.find_bridges()
+        if not ls:
+            return
+
+        for item in ls:
+            # flag = os.system(self.DEL.format(bridge_name=item))
+            # test
+            flag = True
+            if not flag:
+                return False
+        return True
+
+    def find_bridges(self):
+        # output = os.popen(self.SHOW)
+        # ls = list()
+        # while True:
+        #     line = output.readline()
+        #     if not line:
+        #         break
+        #     if line != '\n':
+        #         ls.append(line.replace('\n', ''))
+        # ls.pop(0)
+        # return ls
+        return ['br0']
+
+
+class NetworkBuilder(object):
+    ADD = 'ifconfig {intf_name} {ip_addr} netmask {netmask}'
+    DEL = 'ifconfig {intf_name} 0.0.0.0'
+    UP = 'ifconfig {intf_name} up'
+    DOWN = 'ifconfig {intf_name} down'
+    FIND_ALL = ''' ip link show | awk '{print($2)}' | grep eth | sed 's/://' '''
+
+    def __init__(self):
+        pass
+
+    def reset_interface(self, intf_name):
+        # TODO check is interface exist
+        # if os.system(self.DEL.format(intf_name=intf_name)):
+        #     return True
+        # return False
+        return True
+
+    def set_interface(self, ip_addr, net_mask, intf_name):
+        self.reset_interface(ip_addr, intf_name)
+        # if os.system(self.ADD.format(ip_addr=ip_addr, intf_name=intf_name)):
+        #     return True
+        # return False
+        print_cmd(self.ADD.format(ip_addr=ip_addr, intf_name=intf_name))
+
+    def up_interface(self, intf_name):
+        # if os.system(self.UP.format(intf_name=intf_name)):
+        #     return True
+        # return False
+        print_cmd(self.UP.format(intf_name=intf_name))
+
+    def down_interface(self, intf_name):
+        # if os.system(self.DOWN.format(intf_name=intf_name)):
+        #     return True
+        # return False
+        print_cmd(self.DOWN.format(intf_name=intf_name))
+
+    def find_all_interfaces(self):
+        # output = os.popen(self.FIND_ALL)
+        # ls = list()
+        # while True:
+        #     line = output.readline()
+        #     if not line:
+        #         break
+        #     ls.append(line)
+        # return ls
+        return ['eth0', 'eth1', 'eth2', 'eth3']
+
+    def reset_all(self):
+        ls = self.find_all_interfaces()
+        if not ls:
+            return
+        for item in ls:
+            self.reset_interface(item)
+
+
+class DNSBuilder(object):
+    DNS_PATH = '/etc/resolv.conf'
+    NAME_SERVER = 'nameserver '
+
+    def __init__(self):
+        pass
+
+    def set_name_server(self, server_addr):
+        if check_ip_address(server_addr):
+            cmd = self.NAME_SERVER + server_addr + ' >> ' + self.DNS_PATH
+            os.system(cmd)
+
+    def reset_name_server(self):
+        cmd = '> ' + self.DNS_PATH
+        os.system(cmd)
+
+
+class GatewayBuilder(object):
+    ADD_DEFAULT = 'route add default gw {ip}'
+    DEL_DEFAULT = 'route del default gw {ip}'
+
+    def __init__(self):
+        pass
+
+    def set_default_gateway(self, ip_addr):
+        if check_ip_address(ip_addr):
+            os.system(self.ADD_DEFAULT.format(ip=ip_addr))
+
+    def remove_gateway(self, ip_addr):
+        if check_ip_address(ip_addr):
+            os.system(self.DEL_DEFAULT.format(ip=ip_addr))
+
+
+def check_ip_address(ip):
+    # TODO
+    return True
+
+
+def print_cmd(cmd):
+    print 'cmd', cmd

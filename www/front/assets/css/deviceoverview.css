@@ -1,0 +1,500 @@
+@charset "utf-8";
+/* CSS for global */
+body {
+	font:normal 100%;
+	font-family:Microsoft YaHei, Arial, Helvetica, sans-serif, Tahoma, Geneva, sans-serif!important;
+	color:#363636;
+	position:relative;
+	height:100%;
+	overflow-x:hidden;
+	width:100%;
+}
+html {
+	overflow-x:hidden;
+	overflow-y:auto;
+	font-size: 62.5%!important;/*10 ÷ 16 × 100% = 62.5%*/
+}
+html, body, div, span, h1, h2, h3, h4, h5, h6, em, img, strong, sub, sup, tt, dd, dl, dt, form, label, table, caption, tbody, tfoot, thead, tr, th, td, ul, li, p, a {
+	margin: 0;
+	padding: 0;
+}
+.cbody {
+	margin:0 auto;
+	width:982px;
+	position:relative;
+	background:#FFF;
+}
+img {
+	border:0;
+}
+ul, li {
+	list-style-type:none;
+}
+a:link, a:visited {
+	text-decoration:none;
+	color:#010101;
+}
+a:hover {
+	text-decoration:none;
+	color:#ED0909;
+}
+.overhide {
+	overflow:hidden;
+	text-indent:-100em;
+}
+.clear {
+	clear: both;
+}
+.clearfix:after {
+	clear: both;
+	content: ' ';
+	display: block;
+	font-size: 0;
+	line-height: 0;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+.clearfix {
+	zoom:1
+}
+*, *:before, *:after {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+input {
+	vertical-align:middle;
+}
+/* CSS for global */
+/* css for 筛选条*/
+#menu {
+	position:absolute;
+	left: 849px;
+	top: 93px;
+	z-index:999;
+	cursor:pointer;
+}
+#menu>#nav {
+	width:378px;
+	height:50px;
+}
+#menu>#nav>li {
+ float:left;
+	line-height:50px;
+ text-align:center;
+	position:relative;
+}
+#menu>#nav>li[name='wireless'] {
+	width:126px;
+	height:50px;
+	background:url(../images/sxwx2.png) scroll 0 0 no-repeat;
+}
+#menu>#nav>li[name='switch'] {
+	width:126px;
+	height:50px;
+	background:url(../images/sxjhj2.png) scroll 0 0 no-repeat;
+}
+#menu>#nav>li[name='router'] {
+	width:126px;
+	height:50px;
+	background:url(../images/sxlyq2.png) scroll 0 0 no-repeat;
+}
+#menu>#nav>li>a {
+	position:absolute;
+}
+div[name="wireless"], div[name="switch"], div[name="router"] {
+	border:1px solid #3C66CD;
+	position:absolute;
+	display:none;
+	right:1px;
+	background: #FEFEFE;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#FEFEFE), to(#DDDDDD));
+	background: -webkit-linear-gradient(#FEFEFE, #DDDDDD);
+	background: -moz-linear-gradient(#FEFEFE, #DDDDDD);
+	background: -ms-linear-gradient(#FEFEFE, #DDDDDD);
+	background: -o-linear-gradient(#FEFEFE, #DDDDDD);
+	background: linear-gradient(#FEFEFE, #DDDDDD);
+	-pie-background: linear-gradient(#FEFEFE, #DDDDDD);
+	behavior: url(/PIE.htc);
+	z-index:999;
+	width:80%;
+	padding-left:25px;
+	padding-right:25px;
+}
+.wireless, .switch, .router {
+	border-bottom:1px solid #D7D7D7;
+	margin:0 auto;
+	height:30%;
+}
+.wireless>li, .switch>li, .router>li {
+	float:left;
+	margin-right:8px;
+	width:auto;
+	text-align:right;
+	padding-left: 20px;
+	height:20px;
+}
+div[name="wireless"]>h1, div[name="switch"]>h1, div[name="router"]>h1 {
+	height:30px;
+	line-height:30px;
+	padding:0px 20px;
+	margin-top: 10px;
+}
+div[name="wireless"]>h1>a, div[name="switch"]>h1>a, div[name="router"]>h1>a {
+	font-size:14px;
+	color:#2D62AF;
+}
+div[name="wireless"]>h1>a:first-child, div[name="switch"]>h1>a:first-child, div[name="router"]>h1>a:first-child {
+	float:left;
+}
+div[name="wireless"]>h1>a:last-child, div[name="switch"]>h1>a:last-child, div[name="router"]>h1>a:last-child {
+	float:left;
+	width:70px;
+	height:30px;
+	background:url(../images/quan1.png) scroll left center no-repeat;
+	text-align:center;
+	line-height:30px;
+	margin-left: 30px;
+}
+.ulbut {
+	height: 27px;
+	margin: 20px auto;
+	position: relative;
+	width: 200px;
+}
+.ulbut>li {
+	float:left;
+	text-align:center;
+	border:none;
+	margin:0px 4.5px;
+	color:#6E6C6C;
+}
+.wireless>li>a, .switch>li>a, .router>li>a {
+	color:#585858;
+}
+.ulbut>li>input {
+	width:91px;
+	height:27px;
+	background:url(../images/bt1.png) scroll 0 0 no-repeat;
+	border:none;
+	font-family:"Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", 华文细黑, STHeiti, MingLiu;
+	color:#F7F7F8;
+}
+.btn-router {
+	width:126px;
+	height:50px;
+	background:url(../images/sxlyq1.png) scroll 0 0 no-repeat;
+}
+.btn-wireless {
+	width:126px;
+	height:50px;
+	background:url(../images/sxwx1.png) scroll 0 0 no-repeat;
+}
+.btn-switch {
+	width:126px;
+	height:50px;
+	background:url(../images/sxjhj1.png) scroll 0 0 no-repeat;
+}
+.arrow {
+	background:url(../images/sxdg.png) scroll left center no-repeat;
+}
+.arrow>a {
+	color:#3E6ABB!important;
+}
+.arrow1 {
+	background:url(../images/sxdg.png) scroll left center no-repeat;
+}
+.arrow1 >a {
+	color:#3E6ABB!important;
+}
+.dotted {
+	background:url(../images/quan2.png) scroll left center no-repeat!important;
+}
+.wir {
+	background:url(../images/wuxian1.png) scroll 0 0 no-repeat!important;
+}
+.swi {
+	background:url(../images/luyou1.png) scroll 0 0 no-repeat!important;
+}
+.rot {
+	background:url(../images/wir1.png) scroll 0 0 no-repeat!important;
+}
+.wir>a, .swi>a, .rot>a {
+	color:#FFFFFF;
+}
+/* css for 筛选条*/
+/* css for在线状态*/
+#onlita {
+	width:75%;
+	float:left;
+	margin: 15px 0 0 20px;
+}
+/* css for在线状态*/
+/*css for下拉列表*/
+.dropDown {
+    cursor: pointer;
+    float: left;
+    height: 28px;
+    margin-bottom: 2px;
+    margin-top: 2px;
+    width: 144px;
+}
+.dropDown > form {
+    cursor: pointer;
+    display: inline-block;
+}
+.sleBG1 {
+    background: url(../images/ul2.png) no-repeat scroll 0 0;
+    cursor: pointer;
+    display: block;
+    height: 28px;
+    width: 144px;
+}
+.sleHid {
+    cursor: pointer;
+    display: block;
+    height: 28px;
+    overflow: hidden;
+    padding-left: 10px;
+    width: 100%;
+}
+.select {
+	width:113%;
+	height:28px;
+	background:none;
+	border:none;
+	display:inline-block;
+	cursor:pointer;
+	margin:0px\9;
+	padding:0px\9;
+	position:relative;
+}
+div.dropDown select option {
+	font-size:12px;
+	color:#000;
+	height:100%\9;
+	background-color:#FFF;
+	padding-left: 10px;
+	position:absolute;
+}
+select.cho_liu {
+	width:100%;
+}
+select.select_liu {
+	width:144px;
+	height:28px;
+	margin:2px 0px 2px 20px;
+}
+select[name='cho_liu'] {
+	width:100%;
+}
+/*css for下拉列表*/
+/*css for 树形控件*/
+ul[name ='secroot'] {
+	padding-left: 20px;
+	display:none;
+	cursor:pointer;
+	float:left;
+}
+ul[id="treeDemo"] {
+	cursor:pointer;
+	width:30%;
+	position:relative;
+}
+ul[id="treeDemo"] span[class='starliu'] {
+	width:15px;
+	height:15px;
+	background:url(../images/sc.png) scroll 0 0 no-repeat;
+	display:inline-block;
+	margin-top:2.5px;
+	margin-bottom:2.5px;
+	margin-left:5px;
+}
+ul[id="treeDemo"] span[class='adjunliu'] {
+	width:15px;
+	height:15px;
+	background:url(../images/tj.png) scroll 0 0 no-repeat;
+	display:inline-block;
+	margin-top:2.5px;
+	margin-bottom:2.5px;
+	margin-left:5px;
+}
+ul[id="treeDemo"] span[class='deliu'] {
+	width:15px;
+	height:15px;
+	background:url(../images/gb.png) scroll 0 0 no-repeat;
+	display:inline-block;
+	margin-top:2.5px;
+	margin-bottom:2.5px;
+	margin-left:5px;
+}
+ul[id="treeDemo"]>li[name="root"] {
+	height:20px;
+	line-height:20px;
+}
+ul[id="treeDemo"] span[class="txttree"] {
+	float:left;
+}
+ul[name ='secroot']>li {
+	margin-bottom:5px;
+	height:20px;
+	line-height:20px;
+}
+div[class='daicai'] {
+	position:absolute;
+	top:0px;
+	left: 25px;
+}
+div[class='divtrshu'] {
+	width:400px;
+	height:249px;
+	display:none;
+	position:fixed;
+	top:50%;
+	left:50%;
+	margin:-124.5px 0px 0px -200px;
+	z-index:3000;
+	cursor:pointer;
+}
+div[class='divtrshu']>h1 {
+	width:100%;
+	height:40px;
+	line-height:40px;
+	padding-left:10px;
+	padding-right:10px;
+	background-color:#5acef3;
+}
+div[class='divtrshu']>h1>span:first-child {
+	float:left;
+	font-size:16px;
+}
+div[class='divtrshu']>h1>span:last-child {
+	float:right;
+	background:url(../images/p_t_default.png) scroll 0 0 no-repeat;
+	width:20px;
+	height:21px;
+	margin-top:9.5px;
+	margin-bottom:9.5px;
+}
+div[class='divtrshu'] ul {
+	background-color:green;
+	padding-left: 20px;
+	height:170px;
+	padding-top:10px;
+}
+div[class='divtrshu'] ul li {
+	height:30x;
+	line-height:30px;
+	margin-bottom:10px;
+}
+div[class='divtrshu'] ul li:last-child {
+	margin-bottom:0px;
+}
+div[class='divtrshu'] ul li input {
+	margin-left:10px;
+}
+div[class='divtrshu'] input[type="button"] {
+	height:100%
+}
+div[class='divtrshu'] h2 {
+	background-color:blue;
+	padding-left: 30px;
+}
+div[class='divtrshu'] ul li:first-child span:first-child {
+	margin-right: 11px;
+}
+div[class='divtrshu'] h2 input[type="button"]:last-child {
+	margin-left:10px;
+}
+#divtrshu ul li:first-child span:first-child {
+	margin-right: 0px;
+}
+ul[name ='secroot']>li>span {
+	float:left;
+}
+/*css for 树形控件*/
+/*css for 用户管理*/
+div.Uenterliu {
+	width:500px;
+	height:220px;
+	padding-left:30px;
+	padding-top: 30px;
+	/* display:none; */
+	position:fixed;
+	top:50%;
+	left:50%;
+	margin:-110px 0px 0px -250px;
+	z-index:5000;
+	border:1px solid #000;
+	background-color:#F7F7F7;
+}
+div.Uenterliu>ul {
+	width:50%;
+}
+div.Uenterliu>ul:first-child {
+	float:left;
+}
+div.Uenterliu>ul:last-child {
+	float:right;
+}
+div.Uenterliu>ul>li {
+	height:40px;
+	line-height:40px;
+}
+div.Uenterliu>ul>li>input, div.Uenterliu>ul>li>span {
+	float:left;
+}
+div.Uenterliu>ul>li>span.username {
+	margin-right: 21px;
+}
+div.Uenterliu>ul>li>span.store {
+	margin-right: 9px;
+}
+div.Uenterliu>ul>li>span.passcon {
+	margin-right: 10px;
+}
+div.Uenterliu>ul>li>span.telnum {
+	margin-right: 10px;
+}
+div.Uenterliu>ul>li>span.passliu {
+	margin-right: 22px;
+}
+div.Uenterliu>ul>li>span:last-child {
+	margin-left:15px;
+}
+div.Uenterliu ul li input[type="text"] {
+	width:100px;
+	height:30px;
+	margin:5px 0px;
+	line-height:30px;
+}
+div.mainliu {
+	padding:0px!important;
+}
+div.mainliu ul li input[type="button"] {
+	width: 73px;
+	padding:0px!important;
+	margin-left: 49px;
+	font-size:12px;
+}
+.ztree li span.button.add {
+	background-position: -144px 0;
+	margin-left: 2px;
+	margin-right: -1px;
+	vertical-align: top;
+}
+#treeDemo {
+	background-color:#F7F7F7
+}
+.fx-overlay_pd {
+	display:none;
+	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8);
+	height: 100%;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 5000;
+}
+

@@ -1,0 +1,23 @@
+<magazine>
+    <bridge type="dict">
+        <ip type="str">11.22.33</ip>
+        <mask type="str">255.255.255.0</mask>
+        <dns type="list">
+            <option>222.455.5.55.</option>
+            <option>3.3.3.3</option>
+        </dns>
+    </bridge>
+    <bridge2 type="dict">
+        <ip type="str">11.22.33</ip>
+        <mask type="str">255.255.255.0</mask>
+        <dns type="list">
+            <option>222.455.5.55.</option>
+            <option>3.3.3.3</option>
+        </dns>
+        <!--
+        <dhcp>
+            <ip_range>192.168.1.2-192.168.2.2</ip_range>
+        </dhcp>
+        -->
+    </bridge2>
+</magazine>

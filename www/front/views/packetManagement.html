@@ -1,0 +1,358 @@
+<div class="mainpage_bgc">
+    <div class="overview_mainPageType">
+        <div class="mainpage_head">
+            <img src="assets/images/object.png" class="floatLeft" style="margin-left: 30px">
+
+            <div class="mainpage_name">对象管理</div>
+            <div class="mainpage_ename">Packet&nbsp;Management</div>
+        </div>
+        <div class="vlineShow"></div>
+        <div class="tabbable tabbable-custom tabbable-full-width" class="marginTop20">
+            <ul class="nav nav-tabs" style="margin-right: -20px;margin-left: 25px">
+                <li id="packet_tab" class="active">
+                    <a href="#packetPage" data-toggle="tab">自定义应用分组</a>
+                </li>
+                <li id="time_tab">
+                    <a href="#timePage" data-toggle="tab">时间对象</a>
+                </li>
+                <li id="networkDomain_tab">
+                    <a href="#networkDomainPage" data-toggle="tab">外网域名对象</a>
+                </li>
+                <li id="ip_tab">
+                    <a href="#ipPage" data-toggle="tab">IP对象</a>
+                </li>
+                <li id="mac_tab">
+                    <a href="#macPage" data-toggle="tab">MAC对象</a>
+                </li>
+            </ul>
+            <div class="tab-content pageSizeSet" style="height: 100%;overflow-y:auto">
+                <div id="packetPage" class="tab-pane overflow1200 active">
+                    <div class="pageSizeSet1">
+                        <input type="button" class="btn btn-primary"
+                               value="添加应用" ng-click="packetCustom()">
+                        <input type="button" class="btn btn-danger"
+                               value="删除选中" ng-click="delSelect('app')">
+                    </div>
+                    <div id="packetTabPage">
+                        <div style="margin-right: 40px" class="pageSizeSet">
+                            <div id="customTab"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="timePage" class="tab-pane overflow1200">
+                    <div class="knockMsg">
+                        说明：时间对象用于定义策略生效时间。
+                    </div>
+                    <div class="clear"></div>
+                    <div>
+                        <div class="pageSizeSet1">
+                            <input type="button" class="btn btn-primary"  value="添加规则" ng-click="timeAdd()">
+                            <input type="button" class="btn btn-danger" ng-click="timeDel()"
+                                   value="删除选中">
+                        </div>
+                        <div id="timeTabPage">
+                            <div style="margin-right: 40px" class="pageSizeSet">
+                                <div id="timeListTab"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="networkDomainPage" class="tab-pane overflow1200">
+                    <div>
+                        <div class="pageSizeSet1">
+                            <input type="button" class="btn btn-primary"  value="添加规则" ng-click="addDomainPlay()">
+                            <input type="button" class="btn btn-danger" ng-click="delSelect('domain')"
+                                   value="删除选中">
+                        </div>
+                        <div>
+                            <div style="margin-right: 40px" class="pageSizeSet">
+                                <div id="networkDomainTab"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="ipPage" class="tab-pane overflow1200">
+                    <div>
+                        <div class="pageSizeSet1">
+                            <input type="button" class="btn btn-primary"  value="添加规则" ng-click="addIpPlay()">
+                            <input type="button" class="btn btn-danger" ng-click="delSelect('ip')"
+                                   value="删除选中">
+                        </div>
+                        <div>
+                            <div style="margin-right: 40px" class="pageSizeSet">
+                                <div id="ipTab"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="macPage" class="tab-pane overflow1200">
+                    <div>
+                        <div class="pageSizeSet1">
+                            <input type="button" class="btn btn-primary"  value="添加规则" ng-click="addMacPlay()">
+                            <input type="button" class="btn btn-danger" ng-click="delSelect('mac')"
+                                   value="删除选中">
+                        </div>
+                        <div>
+                            <div style="margin-right: 40px" class="pageSizeSet">
+                                <div id="macTab"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="vlineShow clear"></div>
+                <div class="foot" id="footPage"
+                     style="display:-webkit-flex;justify-content:center;align-items:center;">
+                    <font style="color: #abc;font-size: 12px">Copyright 2016-2019 任子行网络技术股份有限公司</font>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal modal-white" id="custom_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 900px">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="get_conf()">&times;</button>
+                <h4 class="modal-title ng-binding">应用编辑</h4>
+            </div>
+            <form id="customForm" name="customForm" class="form-horizontal form-validation">
+                <div class="modal-body clearfix">
+                    <div class="marginTop20">
+                        <font class="title">自定义应用名称</font>
+                        <input class="interfaceInput  width185 form-control" name="name" ng-model="customData.name" required>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">协议类型</font>
+                        <select class="interfaceInput form-control select185" ng-model="customData.protocol" name="protocol" required>
+                            <option value="tcp">TCP</option>
+                            <option value="udp">UDP</option>
+                        </select>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">规则类型</font>
+                        <select class="interfaceInput form-control select185" ng-model="customData.rule_type" name="rule_type" required>
+                            <option value="srcip_dstip">源IP+目的IP</option>
+                            <option value="srcport_srcip">源端口+源ip</option>
+                            <option value="dstport_dstip">目的端口+目的IP</option>
+                        </select>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">应用所属分类</font>
+                        <select class="interfaceInput  width185 form-control" ng-model="customData.father_class" required>
+                            <option ng-repeat="data in selectApp track by $index" value="{{data.value}}">{{data.name}}</option>
+                        </select>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20" ng-show="customData.rule_type!='dstport_dstip'">
+                        <font class="title">源IP</font>
+                        <select class="interfaceInput form-control select185" ng-disabled="customData.rule_type!='srcip_dstip'" ng-model="ipStartType" name="ipStartType" required>
+                            <option value="1">输入IP</option>
+                            <option value="2">任意IP</option>
+                        </select>
+                        <input class="interfaceInput  width185 form-control" name="ipStart" ng-disabled="ipStartType=='2'" ng-model="customData.srcip" ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/">
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20" ng-show="customData.rule_type!='srcport_srcip'">
+                        <font class="title">目的IP</font>
+                        <select class="interfaceInput form-control select185" ng-disabled="customData.rule_type!='srcip_dstip'" ng-model="ipEndType" name="ipEndType" required>
+                            <option value="1">输入IP</option>
+                            <option value="2">任意IP</option>
+                        </select>
+                        <input class="interfaceInput  width185 form-control" name="ipEnd" ng-model="customData.dstip" ng-disabled="ipEndType=='2'" ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/">
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20" ng-show="customData.rule_type=='srcport_srcip'">
+                        <font class="title">源端口</font>
+                        <select class="interfaceInput form-control select185" ng-model="portStartType" name="portStartType" disabled required>
+                            <option value="1">输入端口</option>
+                            <option value="2">任意端口</option>
+                        </select>
+                        <input class="interfaceInput  width185 form-control" type="number" name="srcport" ng-model="customData.srcport" ng-disabled="ipEndType=='2'" ng-pattern="/^[0-9]*[1-9][0-9]*$/">
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20" ng-show="customData.rule_type=='dstport_dstip'">
+                        <font class="title">目的端口</font>
+                        <select class="interfaceInput form-control select185" ng-model="portEndType" name="portEndType" disabled required>
+                            <option value="1">输入端口</option>
+                            <option value="2">任意端口</option>
+                        </select>
+                        <input class="interfaceInput  width185 form-control" type="number" name="dstport" ng-model="customData.dstport" ng-disabled="ipEndType=='2'" ng-pattern="/^[0-9]*[1-9][0-9]*$/">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btnheight btn btn-primary" data-dismiss="modal" ng-disabled="customForm.$invalid" ng-click="setCustom()">确定</button>
+                    </button>
+                    <button type="button" class="btnheight btn btn-danger" data-dismiss="modal" ng-click="get_conf()">取消</button>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal modal-white" id="timeEdit_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 700px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="getTimeConf()">&times;</button>
+                <h4 class="modal-title ng-binding">编辑时间对象</h4>
+            </div>
+            <form id="timeEditForm" name="timeEditForm" class="bs-example form-horizontal form-validation">
+                <div class="modal-body clearfix">
+                    <div class="marginTop20">
+                        <font class="title">对象名称</font>
+                        <input class="interfaceInput width185 form-control" name="name" ng-model="timeData.name" ng-disabled="nameChange" required><span
+                            class="friendlyMsg">*</span>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">时间段</font>
+                        <div class='multi_select' id="timeSel"></div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title"></font>
+                        <input class="interfaceInput width140 form-control" ng-model="timeStart" type="time" required><span class="floatLeft">~</span>
+                        <input class="interfaceInput width140 form-control" ng-model="timeEnd" type="time" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btnheight btn btn-primary" ng-click="setTimeEdit()"
+                            ng-disabled="timeEditForm.$invalid">确定
+                    </button>
+                    <button type="button" class="btnheight btn btn-danger" data-dismiss="modal" ng-click="getTimeConf()">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal modal-white" id="macEdit_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 700px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="get_conf()">&times;</button>
+                <h4 class="modal-title ng-binding">编辑MAC对象</h4>
+            </div>
+            <form id="macEditForm" name="macEditForm" class="bs-example form-horizontal form-validation">
+                <div class="modal-body clearfix">
+                    <div class="marginTop20">
+                        <font class="title">对象名称</font>
+                        <input class="interfaceInput width185 form-control" name="name" ng-model="mac_classListData.name" required><span
+                            class="friendlyMsg">*</span>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">MAC地址</font><input type="button" ng-click="addMac()" class="btn btn-primary marginLeft10" value="添加">
+                        <div>
+                            <div class="marginTop20" ng-repeat="data in mac_classListData.value track by $index">
+                                <font class="title"></font>
+                                <input class="interfaceInput width185 form-control" value="{{data}}" ng-model="$parent.mac_classListData.value[$index]" ng-pattern="/^[A-Fa-f\d]{2}:[A-Fa-f\d]{2}:[A-Fa-f\d]{2}:[A-Fa-f\d]{2}:[A-Fa-f\d]{2}:[A-Fa-f\d]{2}$/" required><input type="button" class="btn btn-danger" value="删除" ng-click="deleteMac(data)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btnheight btn btn-primary" ng-click="set_conf('mac')"
+                            ng-disabled="macEditForm.$invalid">确定
+                    </button>
+                    <button type="button" class="btnheight btn btn-danger" data-dismiss="modal" ng-click="get_conf()">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal modal-white" id="domainEdit_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 700px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="get_conf()">&times;</button>
+                <h4 class="modal-title ng-binding">编辑域名对象</h4>
+            </div>
+            <form id="domainEditForm" name="domainEditForm" class="bs-example form-horizontal form-validation">
+                <div class="modal-body clearfix" style="height: 350px;overflow-y:auto">
+                    <div class="marginTop20">
+                        <font class="title">对象名称</font>
+                        <input class="interfaceInput width185 form-control" name="name" ng-model="domain_classListData.name" required><span
+                            class="friendlyMsg">*</span>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">域名地址</font><input type="button" ng-click="addDomain()" class="btn btn-primary marginLeft10" value="添加">
+                        <div>
+                            <div class="marginTop20" ng-repeat="data in domain_classListData.value track by $index" style="padding: 5px;border: 2px #2facff solid;margin-left: 190px;width: 300px;">
+                                <input class="interfaceInput width185 form-control" ng-model="$parent.domain_classListData.value[$index]" ng-pattern="/^((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d)(\.((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d)){3}$|^([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}$/" required><input type="button" class="btn btn-danger" value="删除" ng-click="deleteDomain(data)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btnheight btn btn-primary" ng-click="set_conf('domain')"
+                            ng-disabled="domainEditForm.$invalid">确定
+                    </button>
+                    <button type="button" class="btnheight btn btn-danger" data-dismiss="modal" ng-click="get_conf()">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-white" id="ipEdit_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 700px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="get_conf()">&times;</button>
+                <h4 class="modal-title ng-binding">编辑IP对象</h4>
+            </div>
+            <form id="ipEditForm" name="ipEditForm" class="bs-example form-horizontal form-validation">
+                <div class="modal-body clearfix" style="height: 350px;overflow-y:auto">
+                    <div class="marginTop20">
+                        <font class="title">对象名称</font>
+                        <input class="interfaceInput width185 form-control" name="name" ng-model="ip_classListData.name" required><span
+                            class="friendlyMsg">*</span>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">IP地址</font><input type="button" ng-click="addIp('ip_sigle')" class="btn btn-primary marginLeft10" value="添加">
+                        <div>
+                            <div class="marginTop20" ng-repeat="data in ip_classListData.ip_sigle track by $index" style="padding: 5px;border: 2px #2facff solid;margin-left: 190px;width: 300px;">
+                                <input class="interfaceInput width185 form-control" placeholder="输入IP地址" ng-model="$parent.ip_classListData.ip_sigle[$index]" value="{{data}}" ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/" required><input type="button" class="btn btn-danger" value="删除" ng-click="deleteIp(data,'ip_sigle')">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">IP范围</font><input type="button" ng-click="addIp('ip_range')" class="btn btn-primary marginLeft10" value="添加">
+                        <div>
+                            <div class="marginTop20" ng-repeat="data in ip_classListData.ip_range track by $index" style="padding: 5px;border: 2px #2facff solid;margin-left: 190px;width: 400px;">
+                                <input class="interfaceInput width140 form-control" placeholder="输入开始IP地址" value="{{data[0]}}" ng-model="$parent.ip_classListData.ip_range[$index][0]" ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/" required><input class="interfaceInput width140 form-control" ng-model="$parent.ip_classListData.ip_range[$index][1]" placeholder="输入结束IP地址" value="{{data[1]}}" ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/" required><input type="button" class="btn btn-danger" value="删除" ng-click="deleteIp(data,'ip_range')">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">IP网段</font><input type="button" ng-click="addIp('ip_net')" class="btn btn-primary marginLeft10" value="添加">
+                        <div>
+                            <div class="marginTop20" ng-repeat="data in ip_classListData.ip_net track by $index" style="padding: 5px;border: 2px #2facff solid;margin-left: 190px;width: 400px;">
+                                <input class="interfaceInput width140 form-control" placeholder="输入IP地址" value="{{data[0]}}" ng-model="$parent.ip_classListData.ip_net[$index][0]" ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/" required><input class="interfaceInput width140 form-control" placeholder="输入子网掩码" ng-model="$parent.ip_classListData.ip_net[$index][1]" value="{{data[1]}}"><input type="button" class="btn btn-danger" value="删除" ng-click="deleteIp(data,'ip_net')" ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btnheight btn btn-primary" ng-click="set_conf('ip')"
+                            ng-disabled="ipEditForm.$invalid">确定
+                    </button>
+                    <button type="button" class="btnheight btn btn-danger" data-dismiss="modal" ng-click="get_conf()">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

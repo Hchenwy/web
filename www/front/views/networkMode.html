@@ -1,0 +1,56 @@
+<div class="mainpage_bgc">
+    <div class="overview_mainPageType">
+        <div class="mainpage_head">
+            <img src="assets/images/networkMode.png" class="floatLeft" style="margin-left: 30px">
+
+            <div class="mainpage_name">工作模式</div>
+            <div class="mainpage_ename">Working&nbsp;Mode</div>
+        </div>
+        <div class="vlineShow"></div>
+        <div class="tabbable tabbable-custom tabbable-full-width" class="marginTop20">
+            <ul class="nav nav-tabs" style="margin-right: -20px;margin-left: 25px">
+                <li class="active">
+                    <a href="#networkPage" data-toggle="tab">切换模式</a>
+                </li>
+            </ul>
+            <div class="tab-content pageSizeSet" style="height: 100%;overflow-y:auto">
+                <div id="networkPage" class="tab-pane active overflow1200">
+                    <div class="pageSizeSet1">
+                        <div style="width: 30%; float: left">
+                            <div>
+                                <img src="assets/images/gatewayMode.png" class="floatLeft" style="margin-left: 50px;width:250px">
+                            </div>
+                            <div class="clear"></div>
+                            <div class="margintop20" style="margin-left: 30%;margin-top: 20px">
+                                <label ng-class="class_gateway" style="width: 140px;height: 35px"><input type="radio" ng-checked="swith_gateway" ng-click="swith_mode(1)"><span class="marginLeft10">网关模式</span></label>
+                            </div>
+                        </div>
+                        <div style="width: 30%;float: left">
+                            <div>
+                                <img src="assets/images/bridgeMode.png" class="floatLeft" style="margin-left: 50px;width:250px">
+                            </div>
+                            <div class="clear"></div>
+                            <div class="margintop20" style="margin-left: 20%;margin-top: 20px">
+                                <label ng-class="class_bridge" style="width: 140px;height: 35px"><input type="radio" ng-checked="swith_bridge" ng-click="swith_mode(2)"><span class="marginLeft10">网桥模式</span></label>
+                            </div>
+                        </div>
+                        <div style="width: 30%;float: left">
+                            <div>
+                                <img src="assets/images/bypassMode.png" class="floatLeft" style="margin-left: 50px;width:250px">
+                            </div>
+                            <div class="clear"></div>
+                            <div class="margintop20" style="margin-left: 20%;margin-top: 20px">
+                                <label ng-class="class_bypass" style="width: 140px;height: 35px"><input type="radio" ng-checked="swith_bypass" ng-click="swith_mode(3)"><span class="marginLeft10">旁路模式</span></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="vlineShow clear"></div>
+                <div class="foot" id="footPage"
+                     style="display:-webkit-flex;justify-content:center;align-items:center;">
+                    <font style="color: #abc;font-size: 12px">Copyright 2016-2019 任子行网络技术股份有限公司</font>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

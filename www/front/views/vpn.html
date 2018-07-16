@@ -1,0 +1,419 @@
+<div class="mainpage_bgc">
+    <div class="overview_mainPageType">
+        <div class="mainpage_head">
+            <img src="assets/images/vpn.png" class="floatLeft" style="margin-left: 30px">
+
+            <div class="mainpage_name">VPN配置</div>
+            <div class="mainpage_ename">VPN&nbsp;Configuration</div>
+        </div>
+        <div class="vlineShow"></div>
+        <div class="tabbable tabbable-custom tabbable-full-width" class="marginTop20">
+            <ul class="nav nav-tabs" style="margin-right: -20px;margin-left: 25px">
+                <li id="arp_tab" class="active">
+                    <a href="#vpnPage" data-toggle="tab">VPN管理表</a>
+                </li>
+            </ul>
+            <div class="tab-content pageSizeSet" style="height: 100%;overflow-y:auto">
+                <div id="vpnPage" class="tab-pane active overflow1200">
+                    <div class="marginTop15">
+                        <div class="floatLeft">
+                            <font class="title" style="width:100px">VPN总开关</font>
+                        </div>
+                        <div style="margin-left: 10px;float: left">
+                            <div id="div1" class="close1">
+                                <div id="div2" class="close2"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="pageSizeSet1">
+                        <input type="button" class="btn btn-primary" id="pcDevCtrl"
+                               value="添加接入总部" ng-click="addConf()">
+                    </div>
+                    <div id="vpnTabPage">
+                        <div style="margin-right: 40px" class="pageSizeSet">
+                            <div id="vpnListTab"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="vlineShow clear"></div>
+                <div class="foot" id="footPage"
+                     style="display:-webkit-flex;justify-content:center;align-items:center;">
+                    <font style="color: #abc;font-size: 12px">Copyright 2016-2019 任子行网络技术股份有限公司</font>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal modal-white" id="vpn_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 700px">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="get_conf()">&times;</button>
+                <h4 class="modal-title ng-binding">VPN配置</h4>
+            </div>
+            <div class="modal-body clearfix">
+                <form ng-hide="clickNextStep" id="vpnEditForm" name="vpnEditForm" class="bs-example form-horizontal form-validation">
+                    <div class="marginTop20">
+                        <font class="title" style="width: 120px">设备名称</font>
+                        <input class="interfaceInput width185 form-control" name="name" ng-model="vpn.name" ng-pattern="/^[a-zA-Z][a-zA-Z0-9]*$/"
+                               required>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title" style="width: 120px">总部公网IP或域名</font>
+                        <input class="interfaceInput width185 form-control" name="right" ng-model="vpn.right"
+                               required>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title" style="width: 120px">预共享密钥</font>
+                        <input class="interfaceInput width185 form-control" type="password" name="key"
+                               ng-model="vpn.key" required>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title" style="width: 120px">身份验证</font>
+                        <div class="marginLeft10 floatLeft">
+                            <input type="checkbox" name="name" ng-checked="vpn.auth_enable" ng-model="vpn.auth_enable">
+                        </div><span class="title" style="width: 50px">开启</span><img src="assets/images/knockMsg.png" title="功能：开启身份验证后，可使VPN总部获知分支结构的名称，便于VPN管理">
+                    </div>
+                    <div class="clear"></div>
+                    <div ng-hide="!vpn.auth_enable">
+                        <div class="marginTop20">
+                            <font class="title" style="width: 120px">本端ID</font>
+                            <input class="interfaceInput width185 form-control" name="leftid" ng-model="vpn.leftid">
+                            <div class="marginTop20">
+                                <font class="title" style="width: 120px">验证方式</font>
+                                <select class="interfaceInput form-control select185" name="left_authmode"
+                                        ng-model="vpn.left_authmode">
+                                    <option value="IPV4_ADDR">IP地址</option>
+                                    <option value="FQDN">域名字符串</option>
+                                    <option value="USER_FQDN">用户字符串</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="marginTop20">
+                            <font class="title" style="width: 120px">对端ID</font>
+                            <input class="interfaceInput width185 form-control" name="rightid" ng-model="vpn.rightid">
+                            <div class="marginTop20">
+                                <font class="title" style="width: 120px">验证方式</font>
+                                <select class="interfaceInput form-control select185" name="right_authmode"
+                                        ng-model="vpn.right_authmode">
+                                    <option value="IPV4_ADDR">IP地址</option>
+                                    <option value="FQDN">域名字符串</option>
+                                    <option value="USER_FQDN">用户字符串</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="marginTop20">
+                        <font class="title" style="width: 120px">支持模式</font>
+                        <select class="interfaceInput form-control select110" name="model"
+                                ng-model="vpn.model">
+                            <option value="master">主模式</option>
+                            <option value="aggressive">野蛮模式</option>
+                        </select>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title" style="width: 120px">ISAKMP算法列表</font>
+
+                        <div class="floatLeft width100">
+                            <font class="title" style="width: 80px">加密算法</font>
+                            <select class="interfaceInput form-control select100" name="ISAKMP_encryption"
+                                    ng-model="vpn.ISAKMP_encryption">
+                                <option value="DES">DES</option>
+                                <option value="3DES">3DES</option>
+                                <option value="AES">AES</option>
+                            </select>
+                        </div>
+                        <div class="floatLeft marginLeft10 width100">
+                            <font class="title" style="width: 80px">散列算法</font>
+                            <select class="interfaceInput form-control select100" name="ISAKMP_auth"
+                                    ng-model="vpn.ISAKMP_auth">
+                                <option value="MD5">MD5</option>
+                                <option value="SHA">SHA</option>
+                            </select>
+                        </div>
+                        <div class="floatLeft marginLeft10 width185">
+                            <font class="title" style="width: 50px">DH组</font>
+                            <select class="interfaceInput form-control select185" name="DH"
+                                    ng-model="vpn.DH">
+                                <option value="MODP768">MODP768(group1)</option>
+                                <option value="MODP1024">MODP1024(group2)</option>
+                                <option value="MODP1536">MODP1536(group5)</option>
+                            </select>
+                        </div>
+                        <div class="floatLeft marginLeft10 width80">
+                            <font class="title" style="width: 80px">生命周期</font>
+                            <input class="interfaceInput width97 form-control" type="number" name="ISAKMP_lifetime"
+                                   ng-model="vpn.ISAKMP_lifetime" min="600" max="86400" ng-pattern="/^[0-9]*[1-9][0-9]*$/" required>
+                        </div>
+                    </div>
+                </form>
+                <div class="clear"></div>
+                <form ng-hide="!clickNextStep" id="vpnEditForm2" name="vpnEditForm2" class="bs-example form-horizontal form-validation">
+                    <div class="marginTop20">
+                        <font class="friendlyMsg">提示：需经隧道访问的网络</font>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <div class="floatLeft formTabTitle">
+                            <font>本地网段</font>
+                        </div>
+                        <div class="floatLeft formTabTitle">
+                            <font>总部网段</font>
+                        </div><span class="title timeCtrl" style="text-decoration:underline;width:auto" ng-click="addSubnet()">添加</span>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <div ng-repeat="data in vpn.subnet track by $index">
+                            <div class="floatLeft formTabBody">
+                                <input class="interfaceInput2 width130 form-control" placeholder="输入IP地址" ng-model="$parent.vpn.subnet[$index].leftsubnet" value="{{data.leftsubnet}}" ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/" required><input class="interfaceInput2 width130 form-control" placeholder="输入掩码地址" ng-model="$parent.vpn.subnet[$index].leftmask" value="{{data.leftmask}}" ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/" required>
+                            </div>
+                            <div class="floatLeft formTabBody">
+                                <input class="interfaceInput2 width130 form-control" placeholder="输入IP地址" ng-model="$parent.vpn.subnet[$index].rightsubnet" value="{{data.rightsubnet}}" ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/" required><input class="interfaceInput2 width130 form-control" placeholder="输入掩码地址" ng-model="$parent.vpn.subnet[$index].rightmask" value="{{data.rightmask}}" ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/" required>
+                            </div><button type="button" class="close formDelBtn" ng-click="delSubnet(data.id)">&times;</button>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title" style="width: 120px">ESP算法列表</font>
+
+                        <div class="floatLeft width100">
+                            <font class="title" style="width: 80px">加密算法</font>
+                            <select class="interfaceInput form-control select100" name="ESP_encryption"
+                                    ng-model="vpn.ESP_encryption">
+                                <option value="DES">DES</option>
+                                <option value="3DES">3DES</option>
+                                <option value="AES">AES</option>
+                            </select>
+                        </div>
+                        <div class="floatLeft marginLeft10 width100">
+                            <font class="title" style="width: 80px">认证算法</font>
+                            <select class="interfaceInput form-control select100" name="ESP_auth"
+                                    ng-model="vpn.ESP_auth">
+                                <option value="MD5">MD5</option>
+                                <option value="SHA">SHA</option>
+                            </select>
+                        </div>
+                        <div class="floatLeft marginLeft10 width80">
+                            <font class="title" style="width: 80px">生命周期</font>
+                            <input class="interfaceInput width97 form-control" type="number" name="SA_keylife"
+                                   ng-model="vpn.SA_keylife" required min="600" max="86400" ng-pattern="/^[0-9]*[1-9][0-9]*$/">
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title" style="width: 120px">完美向前加密</font>
+                        <select class="interfaceInput form-control select185" name="pfs"
+                                ng-model="vpn.pfs">
+                            <option value="MODP768">MODP768(group1)</option>
+                            <option value="MODP1024">MODP1024(group2)</option>
+                            <option value="">不启用</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btnheight btn btn-primary" ng-hide="clickNextStep" ng-click="clickNextStep=!clickNextStep"
+                        ng-disabled="vpnEditForm.$invalid">下一步
+                </button>
+                <button type="submit" class="btnheight btn btn-primary" ng-hide="!clickNextStep" ng-click="clickNextStep=!clickNextStep">上一步
+                </button>
+                <button type="submit" class="btnheight btn btn-primary" ng-hide="!clickNextStep" ng-click="setSubnet()"
+                        ng-disabled="vpnEditForm2.$invalid">完成
+                </button>
+                <button type="button" class="btnheight btn btn-danger" data-dismiss="modal" ng-click="get_conf()">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal modal-white" id="vpn_dialog2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 700px">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="get_conf()">&times;</button>
+                <h4 class="modal-title ng-binding">VPN配置</h4>
+            </div>
+            <div class="modal-body clearfix" style="height: 450px;overflow-y:auto">
+                <form id="vpnEditForms" name="vpnEditForms" class="bs-example form-horizontal form-validation">
+                    <div class="marginTop20">
+                        <font class="title" style="width: 120px">设备名称</font>
+                        <input class="interfaceInput width185 form-control" name="name" ng-model="vpn.name" ng-pattern="/^[a-zA-Z][a-zA-Z0-9]*$/"
+                               required>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title" style="width: 120px">总部公网IP或域名</font>
+                        <input class="interfaceInput width185 form-control" name="right" ng-model="vpn.right" ng-pattern="/^((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d)(\.((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d)){3}$|^([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}$/"
+                               required>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title" style="width: 120px">预共享密钥</font>
+                        <input class="interfaceInput width185 form-control" type="password" name="key"
+                               ng-model="vpn.key" required>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title" style="width: 120px">身份验证</font>
+                        <div class="marginLeft10 floatLeft">
+                            <input type="checkbox" name="name" ng-checked="vpn.auth_enable" ng-model="vpn.auth_enable">
+                        </div><span class="title" style="width: 50px">开启</span><img src="assets/images/knockMsg.png" title="功能：开启身份验证后，可使VPN总部获知分支结构的名称，便于VPN管理">
+                    </div>
+                    <div class="clear"></div>
+                    <div ng-hide="!vpn.auth_enable">
+                        <div class="marginTop20">
+                            <font class="title" style="width: 120px">本端ID</font>
+                            <input class="interfaceInput width185 form-control" name="leftid" ng-model="vpn.leftid">
+                            <div class="marginTop20">
+                                <font class="title" style="width: 120px">验证方式</font>
+                                <select class="interfaceInput form-control select185" name="left_authmode"
+                                        ng-model="vpn.left_authmode">
+                                    <option value="IPV4_ADDR">IP地址</option>
+                                    <option value="FQDN">域名字符串</option>
+                                    <option value="USER_FQDN">用户字符串</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="marginTop20">
+                            <font class="title" style="width: 120px">对端ID</font>
+                            <input class="interfaceInput width185 form-control" name="rightid" ng-model="vpn.rightid">
+                            <div class="marginTop20">
+                                <font class="title" style="width: 120px">验证方式</font>
+                                <select class="interfaceInput form-control select185" name="right_authmode"
+                                        ng-model="vpn.right_authmode">
+                                    <option value="IPV4_ADDR">IP地址</option>
+                                    <option value="FQDN">域名字符串</option>
+                                    <option value="USER_FQDN">用户字符串</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="marginTop20">
+                        <font class="title" style="width: 120px">支持模式</font>
+                        <select class="interfaceInput form-control select110" name="model"
+                                ng-model="vpn.model">
+                            <option value="master">主模式</option>
+                            <option value="aggressive">野蛮模式</option>
+                        </select>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title" style="width: 120px">ISAKMP算法列表</font>
+
+                        <div class="floatLeft width100">
+                            <font class="title" style="width: 80px">加密算法</font>
+                            <select class="interfaceInput form-control select100" name="ISAKMP_encryption"
+                                    ng-model="vpn.ISAKMP_encryption">
+                                <option value="DES">DES</option>
+                                <option value="3DES">3DES</option>
+                                <option value="AES">AES</option>
+                            </select>
+                        </div>
+                        <div class="floatLeft marginLeft10 width100">
+                            <font class="title" style="width: 80px">散列算法</font>
+                            <select class="interfaceInput form-control select100" name="ISAKMP_auth"
+                                    ng-model="vpn.ISAKMP_auth">
+                                <option value="MD5">MD5</option>
+                                <option value="SHA">SHA</option>
+                            </select>
+                        </div>
+                        <div class="floatLeft marginLeft10 width185">
+                            <font class="title" style="width: 50px">DH组</font>
+                            <select class="interfaceInput form-control select185" name="DH"
+                                    ng-model="vpn.DH">
+                                <option value="MODP768">MODP768(group1)</option>
+                                <option value="MODP1024">MODP1024(group2)</option>
+                                <option value="MODP1536">MODP1536(group5)</option>
+                            </select>
+                        </div>
+                        <div class="floatLeft marginLeft10 width80">
+                            <font class="title" style="width: 80px">生命周期</font>
+                            <input class="interfaceInput width97 form-control" type="number" name="ISAKMP_lifetime"
+                                   ng-model="vpn.ISAKMP_lifetime" required min="600" max="86400" ng-pattern="/^[0-9]*[1-9][0-9]*$/">
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div style="height: 420px">
+                        <div class="marginTop20 knockMsg">
+                            提示：需经隧道访问的网络
+                        </div>
+                        <div class="clear"></div>
+                        <div class="marginTop20">
+                            <div class="floatLeft formTabTitle">
+                                <font>本地网段</font>
+                            </div>
+                            <div class="floatLeft formTabTitle">
+                                <font>总部网段</font>
+                            </div><span class="title vpnCtrl" style="width:auto;font-size: 24px" ng-click="addSubnet()">+</span>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="marginTop20">
+                            <div ng-repeat="data in vpn.subnet track by $index">
+                                <div class="floatLeft formTabBody">
+                                    <input class="interfaceInput2 width130 form-control" placeholder="输入IP地址" ng-model="$parent.vpn.subnet[$index].leftsubnet" value="{{data.leftsubnet}}" ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/" required><input class="interfaceInput2 width130 form-control" placeholder="输入掩码地址" ng-model="$parent.vpn.subnet[$index].leftmask" value="{{data.leftmask}}" ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/" required>
+                                </div>
+                                <div class="floatLeft formTabBody">
+                                    <input class="interfaceInput2 width130 form-control" placeholder="输入IP地址" ng-model="$parent.vpn.subnet[$index].rightsubnet" value="{{data.rightsubnet}}" ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/" required><input class="interfaceInput2 width130 form-control" placeholder="输入掩码地址" ng-model="$parent.vpn.subnet[$index].rightmask" value="{{data.rightmask}}" ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/" required>
+                                </div><button type="button" class="close formDelBtn" ng-click="delSubnet(data.id)">&times;</button>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="marginTop20">
+                            <font class="title" style="width: 120px">ESP算法列表</font>
+
+                            <div class="floatLeft width100">
+                                <font class="title" style="width: 80px">加密算法</font>
+                                <select class="interfaceInput form-control select100" name="ESP_encryption"
+                                        ng-model="vpn.ESP_encryption">
+                                    <option value="DES">DES</option>
+                                    <option value="3DES">3DES</option>
+                                    <option value="AES">AES</option>
+                                </select>
+                            </div>
+                            <div class="floatLeft marginLeft10 width100">
+                                <font class="title" style="width: 80px">认证算法</font>
+                                <select class="interfaceInput form-control select100" name="ESP_auth"
+                                        ng-model="vpn.ESP_auth">
+                                    <option value="MD5">MD5</option>
+                                    <option value="SHA">SHA</option>
+                                </select>
+                            </div>
+                            <div class="floatLeft marginLeft10 width80">
+                                <font class="title" style="width: 80px">生命周期</font>
+                                <input class="interfaceInput width97 form-control" type="number" name="SA_keylife"
+                                       ng-model="vpn.SA_keylife" min="600" max="86400" ng-pattern="/^[0-9]*[1-9][0-9]*$/" required>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="marginTop20">
+                            <font class="title" style="width: 120px">完美向前加密</font>
+                            <select class="interfaceInput form-control select185" name="pfs"
+                                    ng-model="vpn.pfs">
+                                <option value="MODP768">MODP768(group1)</option>
+                                <option value="MODP1024">MODP1024(group2)</option>
+                                <option value="">不启用</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btnheight btn btn-primary"
+                        ng-disabled="vpnEditForms.$invalid" ng-click="setSubnet()">保存
+                </button>
+                <button type="button" class="btnheight btn btn-danger" data-dismiss="modal" ng-click="get_conf()">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+

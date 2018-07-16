@@ -1,0 +1,11 @@
+{
+  "network": {
+    "debug": "on",
+    "logname": "network.log",
+    "dns_path": "/etc/resolv.dnsmasq.conf"
+  },
+  "rio": {
+    "debug": "on",
+    "logname": "rio.log"
+  }
+}

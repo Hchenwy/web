@@ -1,0 +1,186 @@
+<div class="mainpage_bgc">
+    <div class="overview_mainPageType">
+        <div class="mainpage_head">
+            <img src="assets/images/control.png" class="floatLeft" style="margin-left: 30px">
+
+            <div class="mainpage_name">智能流控</div>
+            <div class="mainpage_ename">Intelligence</div>
+        </div>
+        <div class="vlineShow"></div>
+        <div class="tabbable tabbable-custom tabbable-full-width" class="marginTop20">
+            <ul class="nav nav-tabs" style="margin-right: -20px;margin-left: 25px">
+                <li id="portmap_tab" class="active">
+                    <a href="#portmapPage" data-toggle="tab">流量控制</a>
+                </li>
+                <!--<li id="dmz_tab">-->
+                    <!--<a href="#dmzPage" data-toggle="tab">DMZ</a>-->
+                <!--</li>-->
+                <!--<li id="dns_tab">-->
+                    <!--<a href="#ddnsPage" data-toggle="tab">花生壳</a>-->
+                <!--</li>-->
+            </ul>
+            <div class="tab-content pageSizeSet" style="height: 100%;overflow-y:auto">
+                <div id="controlPage" class="tab-pane active overflow1200">
+                    <label><span class="friendlyMsg marginLeft10">注意:1.流量保障带宽（非VPN保障）设置的上下行带宽为共享带宽（同一网段内带宽共享）2.流量保障带宽（VPN保障）可设置与总带宽相同，该方案会尽可能保证VPN的使用</span></label>
+                    <div class="vlineShow clear"></div>
+                    <div class="marginTop15">
+                        <div class="floatLeft">
+                            <font class="title">流量控制开关</font>
+                        </div>
+                        <div style="margin-left: 10px;float: left" >
+                            <div id="div1" class="close1">
+                                <div id="div2" class="close2"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop15">
+                        <div class="floatLeft">
+                            <font class="title">VPN保障开关</font>
+                        </div>
+                        <div style="margin-left: 10px;float: left" >
+                            <div id="div3" class="close1">
+                                <div id="div4" class="close2"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="pageSizeSet1">
+                        <input type="button" class="btn btn-primary" id="portmapAdd"
+                               value="添加" ng-click="portmapAdd()">
+                    </div>
+                    <div id="controlListPage">
+                        <div style="margin-right: 40px" class="pageSizeSet">
+                            <div id="controlTab"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div id="dmzPage" class="tab-pane overflow1200">-->
+                    <!--<form id="dmzSub" name="dmzSub" class="form-horizontal form-validation">-->
+                        <!--<div class="marginTop15">-->
+                            <!--<div class="floatLeft">-->
+                                <!--<font class="title">启用</font>-->
+                            <!--</div>-->
+                            <!--<div style="margin-left: 10px;float: left" >-->
+                                <!--<div id="div3" class="close1">-->
+                                    <!--<div id="div4" class="close2"></div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="clear"></div>-->
+                        <!--<div id="dmzForm" ng-hide="!dmz.enable">-->
+                            <!--<div class="marginTop15">-->
+                                <!--<font class="title">内网地址</font>-->
+                                <!--<input class="inputSize floatLeft width185 form-control" type="text" ng-model="dmz.ip" placeholder="请输入内网IP" ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/" ng-disabled="!dmz.enable"><span class="friendlyMsg">如：192.168.1.100</span>-->
+                            <!--</div>-->
+                            <!--<div class="clear"></div>-->
+                        <!--</div>-->
+                        <!--<div style="margin-top: 20px;margin-left: 190px">-->
+                            <!--<input type="button" class="btnheight btn btn-primary" ng-disabled="ddnsSub.$invalid" value="保存">-->
+                        <!--</div>-->
+                    <!--</form>-->
+                <!--</div>-->
+                <!--<div id="ddnsPage" class="tab-pane overflow1200">-->
+                    <!--<form id="ddnsSub" name="ddnsSub" class="form-horizontal form-validation">-->
+                        <!--<div class="marginTop15">-->
+                            <!--<div class="floatLeft">-->
+                                <!--<font class="title">启用</font>-->
+                            <!--</div>-->
+                            <!--<div style="margin-left: 10px;float: left" >-->
+                                <!--<div id="div1" class="close1">-->
+                                    <!--<div id="div2" class="close2"></div>-->
+                                <!--</div>-->
+                            <!--</div><span class="friendlyMsg marginLeft10">当前仅支持<a href="http://www.oray.com" target="_blank">花生壳</a>动态域名，且在使用拨号上网时有效</span>-->
+                        <!--</div>-->
+                        <!--<div class="clear"></div>-->
+                        <!--<div id="ddnsForm" ng-hide="!ddns.enable">-->
+                            <!--<div class="marginTop15">-->
+                                <!--<font class="title">域名</font>-->
+                                <!--<input class="inputSize floatLeft width185 form-control" id="ddns_serv" type="text" name="ddns_serv" ng-model="ddns.ddns_serv" placeholder="请输入已注册的域名" ng-disabled="!ddns.enable" required><span class="friendlyMsg">如果当前还没有域名或账号，请先到<a href="http://www.oray.com" target="_blank">花生壳</a>官网注册</span>-->
+                            <!--</div>-->
+                            <!--<div class="clear"></div>-->
+                            <!--<div class="marginTop15">-->
+                                <!--<font class="title">用户名</font>-->
+                                <!--<input class="inputSize floatLeft  width185 form-control" id="ddns_user" type="text" name="ddns_user" ng-model="ddns.ddns_user" placeholder="请输入花生壳账号" ng-disabled="!ddns.enable" required>-->
+                            <!--</div>-->
+                            <!--<div class="clear"></div>-->
+                            <!--<div class="marginTop15">-->
+                                <!--<font class="title">密码</font>-->
+                                <!--<input class="inputSize floatLeft width185 form-control" id="ddns_passwd" type="password" name="ddns_passwd" ng-model="ddns.ddns_passwd" placeholder="请输入花生壳密码" ng-disabled="!ddns.enable" required>-->
+                            <!--</div>-->
+                            <!--<div class="clear"></div>-->
+                            <!--<div class="marginTop15">-->
+                                <!--<font class="title">状态</font>-->
+                                <!--<span class="inputSize floatLeft width185">{{ddns.ddns_status}}</span>-->
+                            <!--</div>-->
+                            <!--<div class="clear"></div>-->
+                        <!--</div>-->
+                        <!--<div style="margin-top: 20px;margin-left: 190px">-->
+                            <!--<input type="submit" class="btnheight btn btn-primary" ng-disabled="ddnsSub.$invalid" id="resetSn_btn" value="保存">-->
+                        <!--</div>-->
+                    <!--</form>-->
+                <!--</div>-->
+                <div class="vlineShow clear"></div>
+                <div class="foot" id="footPage"
+                     style="display:-webkit-flex;justify-content:center;align-items:center;">
+                    <font style="color: #abc;font-size: 12px">Copyright 2016-2019 任子行网络技术股份有限公司</font>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal modal-white" id="portmap_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 700px">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title ng-binding">端口映射规则编辑</h4>
+            </div>
+            <form id="portmapForm" name="portmapForm" class="form-horizontal form-validation">
+                <div class="modal-body clearfix">
+                    <div class="marginTop15">
+                        <div class="floatLeft">
+                            <font class="friendlyMsg">示例说明：将内网服务器IP：192.168.1.100的80端口映射到外网接口的8080端口上，协议是TCP.</font>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">规则名称</font>
+                        <input class="interfaceInput  width185 form-control" name="pr_name" ng-model="portmapData.pr_name" required>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">协议类型</font>
+                        <select class="interfaceInput form-control select110" name="pr_protype" ng-model="portmapData.pr_protype">
+                            <option value="tcp">TCP</option>
+                            <option value="udp">UDP</option>
+                            <option value="tcp udp">ALL</option>
+                        </select>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">内部端口</font>
+                        <input class="interfaceInput  width185 form-control" name="pr_inport" ng-model="portmapData.pr_inport" placeholder="80" type="number" required>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">外部端口</font>
+                        <input class="interfaceInput  width185 form-control" name="pr_outport" ng-model="portmapData.pr_outport" placeholder="8080" type="number" required>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">内网IP</font>
+                        <input class="interfaceInput  width185 form-control" name="pr_inip" ng-model="portmapData.pr_inip" placeholder="192.168.1.1" ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btnheight btn btn-primary" ng-disabled="portmapForm.$invalid">确定</button>
+                    <button type="button" class="btnheight btn btn-danger" data-dismiss="modal">取消
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8"/>
+	<title>网络安全管理系统</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+	<meta content="" name="description"/>
+	<meta content="" name="author"/>
+	<meta name="MobileOptimized" content="320">
+	<!--icon字体图标-->
+	<link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	<link rel="shortcut icon" href="favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="assets/images/title.ico"/>
+	<link href="assets/css/grcms.css" rel="stylesheet" type="text/css"/>
+	<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" type="text/css" href="assets/css/jquery-ui.css"/>
+	<link href="assets/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="assets/css/rcms.css"/>
+	<script src="assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="assets/js/common.js"></script>
+</head>
+<body>
+<div class="main" id="main">
+	<div class="page page1">
+		<div class="txt">
+			<div class="main1">
+				<div style="position: relative  ;width: 100%; margin-top: 20px;margin-left: 20px">
+					<h2>系统管理</h2>
+					<div style="margin-top: 20px;">
+						<font class="title">产品型号：</font>
+						<span id="product">--</span><input type="button" class="btnheight btn btn-primary" id="resetProduct_btn"
+														   value="修改">
+					</div>
+					<div style="margin-top: 20px;">
+						<font class="title">设备序列号：</font>
+						<span id="sn">--</span><input type="button" class="btnheight btn btn-primary" id="resetSn_btn"
+													  value="修改">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal modal-white" id="resetSn_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+	 data-backdrop="static">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title ng-binding">修改序列号</h4>
+			</div>
+			<div class="modal-body clearfix" style="text-align:center">
+				<label style="font-size: 20px">请输入序列号：<input style="height: 30px" id="resetSn_input" type="text"></label>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btnheight btn btn-primary" id="dialog_reset">保存</button>
+				<button type="button" class="btnheight btn btn-danger" data-dismiss="modal">取消</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal modal-white" id="resetProduct_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+	 data-backdrop="static">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title ng-binding">修改产品型号</h4>
+			</div>
+			<div class="modal-body clearfix" style="text-align:center">
+				<label style="font-size: 20px">请输入产品型号：<input style="height: 30px" id="resetProduct_input" type="text"></label>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btnheight btn btn-primary" id="dialog_resetProduct">保存</button>
+				<button type="button" class="btnheight btn btn-danger" data-dismiss="modal">取消</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$('#resetSn_btn').on('click',function(){
+		$('#resetSn_dialog').show();
+	});
+	$('#resetProduct_btn').on('click',function(){
+		$('#resetProduct_dialog').show();
+	});
+	$('.close,.btn-danger').on('click',function(){
+		$('#resetProduct_dialog').hide();
+        $('#resetSn_dialog').hide();
+	});
+    rcms.ajax({
+        type: 'post',
+        url: '/apis/over_view/'
+    }).success(function (data) {
+        if(data.result=='ok'){
+            $('#product').text(data.msg.product);
+            $('#sn').text(data.msg.sn);
+        }else{
+            alert(data.msg);
+        }
+    }).error(function (data) {
+        alert(data.msg);
+    });
+    $('#dialog_reset').on('click',function(){
+        rcms.ajax({
+            type: 'post',
+            url: '/apis/rw_dev_info/',
+            data:JSON.stringify({sn:$('#resetSn_input').val()})
+        }).success(function (data) {
+            if(data.result=='ok'){
+                alert('修改成功');
+                $('#resetSn_dialog').hide();
+            }else{
+                alert(data.msg);
+            }
+        }).error(function (data) {
+            alert(data.msg);
+        })
+    });
+    $('#dialog_resetProduct').on('click',function(){
+        rcms.ajax({
+            type: 'post',
+            url: '/apis/rw_dev_info/',
+            data:JSON.stringify({product:$('#resetProduct_input').val()})
+        }).success(function (data) {
+            if(data.result=='ok'){
+                alert('修改成功');
+                $('#resetProduct_dialog').hide();
+            }else{
+                alert(data.msg);
+            }
+        }).error(function (data) {
+            alert(data.msg);
+        })
+    });
+</script>
+</body>
+</html>

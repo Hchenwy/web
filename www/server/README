@@ -1,0 +1,9 @@
+zypper install python-devel
+pip install django
+pip install uwsgi
+pip install pyDes
+pip install xmltodict
+pip install dict2xml
+pip install rabbitpy
+pip install requests
+pip install jsonmerge

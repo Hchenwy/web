@@ -1,0 +1,105 @@
+<div class="mainpage_bgc">
+    <div class="overview_mainPageType">
+        <div class="mainpage_head">
+            <img src="assets/images/router.png" class="floatLeft" style="margin-left: 30px">
+
+            <div class="mainpage_name">路由/负载</div>
+            <div class="mainpage_ename">Routing / Load&nbsp;Balancing</div>
+        </div>
+        <div class="vlineShow"></div>
+        <div class="tabbable tabbable-custom tabbable-full-width" class="marginTop20">
+            <ul class="nav nav-tabs" style="margin-right: -20px;margin-left: 25px">
+                <li class="active">
+                    <a href="#routerPage" data-toggle="tab">静态路由</a>
+                </li>
+                <li>
+                    <a href="#balancePage" data-toggle="tab">多线路负载均衡</a>
+                </li>
+            </ul>
+            <div class="tab-content pageSizeSet" style="height: 100%;overflow-y:auto">
+                <div id="routerPage" class="tab-pane overflow1200 active">
+                    <div class="pageSizeSet1">
+                        <button class="btnheight btn btn-primary" id="add_router">添加</button>
+                    </div>
+                    <div style="margin-right: 40px" class="pageSizeSet">
+                        <div id="routerTab"></div>
+                    </div>
+                </div>
+                <div id="balancePage" class="tab-pane overflow1200">
+                    <div class="pageSizeSet1">
+                        <div>
+                            <div class="floatLeft">
+                                <font>负载均衡开关</font>
+                            </div>
+                            <div style="margin-left: 30px;float: left">
+                                <div id="div1" class="close1">
+                                    <div id="div2" class="close2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div style="margin-right: 40px" class="pageSizeSet">
+                        <div id="balanceTab"></div>
+                    </div>
+                </div>
+                <div class="vlineShow clear"></div>
+                <div class="foot" id="footPage"
+                     style="display:-webkit-flex;justify-content:center;align-items:center;">
+                    <font style="color: #abc;font-size: 12px">Copyright 2016-2019 任子行网络技术股份有限公司</font>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal modal-white" id="routes_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 700px">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title ng-binding">添加网口配置规则</h4>
+            </div>
+            <form id="routerForm">
+                <div class="clear"></div>
+                <div class="marginTop20" style="display: none">
+                    <font class="title">id</font>
+                    <input class="inputSize floatLeft" id="routes_id" name="id" type="text">
+                </div>
+                <div class="clear"></div>
+                <div class="marginTop20" style="display: none">
+                    <font class="title">addOrEdit</font>
+                    <input class="inputSize floatLeft" id="addOrEdit" type="text">
+                </div>
+                <div class="clear"></div>
+                <div class="marginTop20">
+                    <font class="title">IP地址</font>
+                    <input class="inputSize floatLeft width185 form-control" id="routes_ip" type="text" name="ip"
+                           placeholder="192.168.1.1" required>
+                </div>
+                <div class="clear"></div>
+                <div class="marginTop20">
+                    <font class="title">掩码地址</font>
+                    <input class="inputSize floatLeft  width185 form-control" id="routes_mask" type="text" name="mask"
+                           value=255.255.255.0 required>
+                </div>
+                <div class="clear"></div>
+                <div class="marginTop20">
+                    <font class="title">下一跳地址</font>
+                    <input class="inputSize floatLeft  width185 form-control" id="next_route" type="text"
+                           name="next_route" placeholder="192.168.10.1" required>
+                </div>
+                <div class="clear"></div>
+                <div class="errMsg marginTop20" style="text-align: center">
+                    <font style="display: none;text-align: center" id="errorMsg2">绑定接口</font>
+                </div>
+                <div class="clear"></div>
+                <div class="modal-footer">
+                    <input type="submit" class="btnheight btn btn-primary" id="router_btn"
+                           value="确定">
+                    <button type="button" class="btnheight btn btn-danger" data-dismiss="modal">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

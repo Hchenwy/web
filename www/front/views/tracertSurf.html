@@ -1,0 +1,69 @@
+<div class="mainpage_bgc">
+    <div class="overview_mainPageType">
+        <div class="mainpage_head">
+            <img src="assets/images/sys_tracert.png" class="floatLeft" style="margin-left: 30px">
+
+            <div class="mainpage_name">网络检测</div>
+            <div class="mainpage_ename">Network&nbsp;Detection</div>
+        </div>
+        <div class="vlineShow"></div>
+        <div class="tabbable tabbable-custom tabbable-full-width">
+            <ul class="nav nav-tabs" style="margin-right: -20px;margin-left: 25px">
+                <li class="active">
+                    <a href="#tracertPagePage" data-toggle="tab">网络检测</a>
+                </li>
+            </ul>
+            <div class="tab-content pageSizeSet" style="height: 100%;overflow-y:auto">
+                <div id="tracertPagePage" class="tab-pane active overflow1200">
+                    <form id="tracertForm">
+                        <div class="marginTop20">
+                            <font class="title">检测方式</font>
+                            <select class="inputSize select130 form-control" id="tracertSelect" name="diag">
+                                <option value="ping" selected>PING检测</option>
+                                <option value="tracer">Tracert检测</option>
+                            </select>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="marginTop20">
+                            <font class="title">监测地址</font>
+                            <input name="address" class="inputSize width185 form-control" type="text"
+                                   value="www.baidu.com">
+                        </div>
+                        <div class="clear"></div>
+                        <div class="marginTop20" id="pageSet">
+                            <div class="floatLeft">
+                                <font class="title">封包设置</font>
+                            </div>
+                            <div class="title" style="margin-left: 10px;width: 550px !important">
+                                <label class="floatLeft">封包数量<input class="inputSize width65 form-control"
+                                                                    style="width:50px;" type="text" value="5"
+                                                                    name="count">个</label>
+                                <label class="floatLeft">封包大小<input class="inputSize width65 form-control"
+                                                                    style="width:50px;" type="text" value="32"
+                                                                    name="pack_size">字节</label>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div style="margin-top: 20px;margin-left:190px">
+                            <input type="submit" class="btnheight btn btn-primary" id="tracert_btn"
+                                   value="开始检测">
+                        </div>
+                    </form>
+                    <div class="clear"></div>
+                    <div style="margin-top: 20px;margin-left: 160px">
+                        <div style="margin-left: -45px;overflow-y:auto; overflow-x:auto;text-align:left;width: 600px;height: 300px;border:solid 5px #D4D4D4; border-radius:5px; resize:none;"
+                             id="main">
+                            <div id="tracert_msg" style="color: #2c83d7"></div>
+                            <span id="msg_end" style="overflow:hidden"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="vlineShow clear"></div>
+                <div class="foot" id="footPage"
+                     style="display:-webkit-flex;justify-content:center;align-items:center;">
+                    <font style="color: #abc;font-size: 12px">Copyright 2016-2019 任子行网络技术股份有限公司</font>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="mainpage_bgc">
+    <div class="overview_mainPageType">
+        <div class="mainpage_head">
+            <img src="assets/images/dialog.png" class="floatLeft" style="margin-left: 30px">
+
+            <div class="mainpage_name">日志中心</div>
+            <div class="mainpage_ename">Journal&nbsp;Centers</div>
+        </div>
+        <div class="vlineShow"></div>
+        <div class="tabbable tabbable-custom tabbable-full-width" class="marginTop20">
+            <ul class="nav nav-tabs" style="margin-right: -20px;margin-left: 25px">
+                <li class="active">
+                    <a href="#userPage" data-toggle="tab">管理员日志</a>
+                </li>
+                <li>
+                    <a href="#sysPage" data-toggle="tab">系统日志</a>
+                </li>
+                <li>
+                    <a href="#pppdPage" data-toggle="tab">拨号日志</a>
+                </li>
+            </ul>
+            <div class="tab-content pageSizeSet" style="height: 100%;overflow-y:auto">
+                <div id="userPage" class="tab-pane overflow1200 active">
+                    <div>
+                        <div style="float: right;margin-right: 30px">
+                            <div class="floatLeft">
+                                <label><font class="title" style="width: auto">搜索:</font></label>
+                            </div>
+                            <div style="margin-left: 30px;float: left">
+                                <input class="inputSize width185 form-control" type="text" ng-change="selectIp()"
+                                       ng-model="selectValue">
+                            </div>
+                        </div>
+                        <div class="marginTop20 marginLeft10">
+                            <form name="userForm" class="form-horizontal form-validation">
+                                <input class="interfaceInput width185 form-control" type="date" name="begin_date" ng-model="user.begin_date"><span class="friendlyMsg">~</span><input class="interfaceInput width185 form-control" type="date" name="end_date" ng-model="user.end_date"><span class="friendlyMsg">查询条数：</span><input class="interfaceInput width80 form-control" ng-pattern="/^[0-9]*[1-9][0-9]*$/" type="number" name="num" ng-model="user.num"
+                                                                                                                                                                                                                                                                                                                                     required><button type="submit" class="btn btn-primary" ng-click="userSurf()" ng-disabled="userForm.$invalid">查询</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div style="margin-right: 40px" class="pageSizeSet">
+                        <div id="userTab"></div>
+                    </div>
+                </div>
+                <div id="pppdPage" class="tab-pane overflow1200">
+                    <div class="marginTop20">
+                        <form name="pppdForm" class="form-horizontal form-validation">
+                            <input class="interfaceInput width185 form-control" type="date" name="begin_date" ng-model="pppd.begin_date"><span class="friendlyMsg">~</span><input class="interfaceInput width185 form-control" type="date" name="end_date" ng-model="pppd.end_date"><span class="friendlyMsg">查询条数：</span><input class="interfaceInput width80 form-control" ng-pattern="/^[0-9]*[1-9][0-9]*$/" name="num" ng-model="pppd.num"
+                                                                                                                                                                                                                                                                                                                               required><button type="submit" class="btn btn-primary" ng-click="pppdSurf()" ng-disabled="pppdForm.$invalid">查询</button>
+                        </form>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="dialogZone" id="pppdZone">
+
+                    </div>
+                </div>
+                <div id="sysPage" class="tab-pane overflow1200">
+                    <div class="marginTop20">
+                        <form name="sysForm" class="form-horizontal form-validation">
+                            <input class="interfaceInput width185 form-control" type="date" name="begin_date" ng-model="sys.begin_date"><span class="friendlyMsg">~</span><input class="interfaceInput width185 form-control" type="date" name="end_date" ng-model="sys.end_date"><span class="friendlyMsg">查询条数：</span><input class="interfaceInput width80 form-control" ng-pattern="/^[0-9]*[1-9][0-9]*$/" name="num" ng-model="sys.num"
+                                                                                                                                                                                                                                                                                                                               required><button type="submit" class="btn btn-primary" ng-click="sysSurf()" ng-disabled="sysForm.$invalid">查询</button>
+                        </form>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="dialogZone" id="sysZone">
+
+                    </div>
+                </div>
+                <div class="vlineShow clear"></div>
+                <div class="foot" id="footPage"
+                     style="display:-webkit-flex;justify-content:center;align-items:center;">
+                    <font style="color: #abc;font-size: 12px">Copyright 2016-2019 任子行网络技术股份有限公司</font>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

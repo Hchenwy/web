@@ -1,0 +1,152 @@
+<div  class="mainpage_bgc">
+    <div class="overview_mainPageType">
+        <div class="mainpage_head">
+            <img src="assets/images/sys_updatedev.png"  class="floatLeft" style="margin-left: 30px">
+            <div class="mainpage_name">系统管理</div>
+            <div class="mainpage_ename">System&nbsp;Management</div>
+        </div>
+    <div class="vlineShow"></div>
+    <div class="tabbable tabbable-custom tabbable-full-width marginTop20">
+        <ul class="nav nav-tabs" style="margin-right: -20px;margin-left: 25px">
+            <li class="active">
+                <a href="#updatePage" data-toggle="tab">固件升级</a>
+            </li>
+            <li>
+                <a href="#configurationPage" data-toggle="tab">配置文件</a>
+            </li>
+            <li>
+                <a href="#passwordPage" data-toggle="tab">密码管理</a>
+            </li>
+            <li>
+                <a href="#reloadPage" data-toggle="tab">重启设备</a>
+            </li>
+            <li>
+                <a href="#getlogsPage" data-toggle="tab">一键收集</a>
+            </li>
+            <li>
+                <a href="#setPortPage" data-toggle="tab">端口号设置</a>
+            </li>
+            <li>
+                <a href="#setLicPage" data-toggle="tab">License地址</a>
+            </li>
+        </ul>
+        <div class="tab-content pageSizeSet" style="height: 100%;overflow-y:auto">
+            <div id="updatePage" class="pageSizeSet tab-pane active overflow1200">
+                <div  class="marginTop20">
+                    <font class="title">版本上传</font>
+                    <form action=""  method="post" enctype="multipart/form-data">
+                        <input type="file" id="bbfile" name="path" class="file_update" style="margin-left:10px;float: left;width:300px;border:solid 1px #abc; border-radius:10px; resize:none;"/>
+                    </form>
+                    <!--<label style="margin-left: 10px;"><input style="height: 30px;float: left;border: solid 1px rgba(0, 0, 0, 0.22)" id="bbfile" type="file">-->
+                        <!--</label>-->
+                </div>
+                <div class="clear"></div>
+                <div class="marginTop20">
+                    <div class="floatLeft">
+                        <font class="title">保留配置</font>
+                    </div>
+                    <div style="margin-left: 10px;float: left" >
+                        <div id="div7" class="open1">
+                            <div id="div8" class="open2"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div style="margin-left: 190px;margin-top: 20px">
+                    <input type="button" class="btnheight btn btn-primary floatLeft" id="update_btn" ng-click="fileupload()"
+                           value="升级"><span class="friendlyMsg">系统升级后将自动重启</span>
+                </div>
+                <div class="clear"></div>
+                <div style="margin-top: 20px;margin-left: 160px;">
+                    <font style="color: red;font-size: 14px;display: none" id="errorMsg"></font>
+                </div>
+            </div>
+            <div id="configurationPage" class="pageSizeSet tab-pane overflow1200">
+                <div  class="marginTop20">
+                    <font class="title">配置还原</font>
+                    <label class="marginLeft10"><input type="button" class="btnheight btn btn-primary floatLeft" id="resetTing_btn"  value="恢复出厂设置">
+                    </label>
+                </div>
+            </div>
+            <div id="passwordPage" class="pageSizeSet tab-pane overflow1200">
+                <form id="passwordForm">
+                    <div class="marginTop20">
+                        <font class="title">原密码</font>
+                        <label class="marginLeft10"><input class="inputSize width185 form-control" type="password" id="old_pwd" name="old_pwd" required="required"><span class="err-tip">*</span>
+                        </label>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">新密码</font>
+                        <label class="marginLeft10"><input class="inputSize width185 form-control" type="password" id="new_pwd" name="pwd" required="required"><span class="err-tip">*</span>
+                        </label>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">确认新密码</font>
+                        <label class="marginLeft10"><input class="inputSize width185 form-control" type="password" id="new_pwd2" required="required"><span class="err-tip">*</span>
+                        </label>
+                    </div>
+                    <div class="clear"></div>
+                    <div style="margin-left: 200px;margin-top: 20px">
+                        <input type="submit" class="btnheight btn btn-primary floatLeft" id="resetPassword_btn" value="修改">
+                    </div>
+                    <div class="clear"></div>
+                    <div style="margin-top: 20px;margin-left: 160px;">
+                        <font style="color: red;font-size: 14px;display: none" id="errorMsg2"></font>
+                    </div>
+                </form>
+            </div>
+            <div id="reloadPage" class="pageSizeSet tab-pane overflow1200">
+                <div class="marginTop20">
+                    <font class="title">重启设备</font>
+                    <label class="marginLeft10"><input type="button" class="btnheight btn btn-primary floatLeft" id="reload_btn"  value="重启">
+                    </label>
+                </div>
+            </div>
+            <div id="getlogsPage" class="pageSizeSet tab-pane overflow1200">
+                <div class="marginTop20">
+                    <font class="title">一键收集</font>
+                    <label class="marginLeft10"><input type="button" class="btnheight btn btn-primary floatLeft" id="getlogs_btn"  value="确定">
+                    </label>
+                </div>
+            </div>
+            <div id="setPortPage" class="pageSizeSet tab-pane overflow1200">
+                <div class="marginTop20 form-validation">
+                    <font class="title">端口号</font>
+                    <label class="marginLeft10">
+                    </label><input class="inputSize width185 form-control floatLeft" type="text" id="port"><span class="friendlyMsg">*WEB登录端口号</span>
+                </div>
+                <div style="margin-left: 190px;margin-top: 20px">
+                    <input type="submit" class="btnheight btn btn-primary floatLeft" id="setPort_btn" value="修改">
+                </div>
+            </div>
+            <div id="setLicPage" class="tab-pane overflow1200">
+                <div class="marginTop20 form-validation">
+                    <font class="title"> license服务器地址</font>
+                    <label class="marginLeft10"><input class="inputSize form-control" type="text" id="addr" style="width: 250px;height: 30px;" disabled>
+                    </label>
+                </div>
+                <div style="margin-left: 160px;margin-top: 20px;display: none">
+                    <input type="submit" class="btnheight btn btn-primary floatLeft" id="edit_license" value="修改">
+                </div>
+            </div>
+            <div class="vlineShow clear"></div>
+            <div class="foot" id="footPage"
+                 style="display:-webkit-flex;justify-content:center;align-items:center;">
+                <font style="color: #abc;font-size: 12px">Copyright 2016-2019 任子行网络技术股份有限公司</font>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="modal modal-white" id="reloadMsg_dialog" tabin1dex="-1" role="dialog" aria-labelledby="myModalLabel"
+     data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content reloadMsg">
+            <div class="modal-body clearfix text_center">
+                 <font>设备正在重启···</font><br><font>重启时间大约需要2分钟，请勿进行其它操作</font><br><font id="timeLoad">120</font>秒
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,87 @@
+<magazine>
+    <mode type="str">bridge</mode>
+    <internal type="list">
+        <option></option>
+    </internal>
+    <external type="list">
+        <option>bridge0</option>
+        <option>bridge1</option>
+        <option>bridge2</option>
+    </external>
+    <bridge0 type="dict">
+        <name type="str">br0</name>
+        <ip type="str">10.10.10.10</ip>
+        <mask type="str">255.255.255.0</mask>
+        <mac type="str">08:00:27:70:CD:1A</mac>
+        <interface type="list">
+            <option>eth0</option>
+            <option>eth1</option>
+            <option>eth2</option>
+            <option>eth3</option>
+            <option>eth4</option>
+            <option>eth5</option>
+        </interface>
+        <vlan type="list">
+            <option>100</option>
+            <option>200</option>
+        </vlan>
+    </bridge0>
+    <bridge1 type="dict">
+        <name type="str">br1</name>
+        <ip type="str"></ip>
+        <mask type="str"></mask>
+        <mac type="str">08:00:27:70:CD:2A</mac>
+        <interface type="list"></interface>
+        <vlan type="list"></vlan>
+    </bridge1>
+    <bridge2 type="dict">
+        <name type="str">br2</name>
+        <ip type="str"></ip>
+        <mask type="str"></mask>
+        <mac type="str">08:00:27:70:CD:3A</mac>
+        <interface type="list"></interface>
+        <vlan type="list"></vlan>
+    </bridge2>
+    <intf0 type="dict">
+        <name type="str">eth0</name>
+        <ip type="str"></ip>
+        <mask type="str"></mask>
+        <mac type="str">08:00:27:70:CD:4A</mac>
+    </intf0>
+    <intf1 type="dict">
+        <name type="str">eth1</name>
+        <ip type="str"></ip>
+        <mask type="str"></mask>
+        <mac type="str">08:00:27:70:CD:5A</mac>
+    </intf1>
+    <intf2 type="dict">
+        <name type="str">eth2</name>
+        <ip type="str"></ip>
+        <mask type="str"></mask>
+        <mac type="str">08:00:27:70:CD:6A</mac>
+    </intf2>
+    <intf3 type="dict">
+        <name type="str">eth3</name>
+        <ip type="str"></ip>
+        <mask type="str"></mask>
+        <mac type="str">08:00:27:70:CD:7A</mac>
+    </intf3>
+    <intf4 type="dict">
+        <name type="str">eth4</name>
+        <ip type="str"></ip>
+        <mask type="str"></mask>
+        <mac type="str">08:00:27:70:CD:8A</mac>
+    </intf4>
+    <intf5 type="dict">
+        <name type="str">eth5</name>
+        <ip type="str"></ip>
+        <mask type="str"></mask>
+        <mac type="str">08:00:27:70:CD:9A</mac>
+    </intf5>
+    <gateway>10.10.10.254</gateway>
+    <dns_addr type="list">
+        <option>8.8.8.8</option>
+        <option>8.8.6.6</option>
+    </dns_addr>
+</magazine>
+

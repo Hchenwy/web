@@ -1,0 +1,72 @@
+<div class="mainpage_bgc">
+    <div class="overview_mainPageType">
+        <div class="mainpage_head">
+            <img src="assets/images/attack.png" class="floatLeft" style="margin-left: 30px">
+
+            <div class="mainpage_name">本地防攻击</div>
+            <div class="mainpage_ename">Local&nbsp;Attack&nbsp;Prevention</div>
+        </div>
+        <div class="vlineShow"></div>
+        <div class="tabbable tabbable-custom tabbable-full-width" class="marginTop20">
+            <ul class="nav nav-tabs" style="margin-right: -20px;margin-left: 25px">
+                <li id="antiAttack_tab" class="active">
+                    <a href="#antiAttackPage" data-toggle="tab">本地防攻击</a>
+                </li>
+            </ul>
+            <div class="tab-content pageSizeSet" style="height: 100%;overflow-y:auto">
+                <div id="antiAttackPage" class="tab-pane active overflow1200">
+                    <form id="antiAttackForm" name="antiAttackForm" class="form-horizontal form-validation">
+                        <div class="marginTop15">
+                            <div class="floatLeft">
+                                <font class="title">防DOS攻击</font>
+                            </div>
+                            <div style="margin-left: 10px;float: left" >
+                                <div id="div3" class="close1">
+                                    <div id="div4" class="close2"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="marginTop15">
+                            <div class="floatLeft">
+                                <font class="title">禁止内网PING设备</font>
+                            </div>
+                            <div style="margin-left: 10px;float: left" >
+                                <div id="div5" class="close1">
+                                    <div id="div6" class="close2"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="marginTop15">
+                            <div class="floatLeft">
+                                <font class="title">禁止外网PING设备</font>
+                            </div>
+                            <div style="margin-left: 10px;float: left" >
+                                <div id="div7" class="close1">
+                                    <div id="div8" class="close2"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="marginTop15">
+                            <font class="title">WEB访问端口</font>
+                            <input class="interfaceInput floatLeft width185 form-control" placeholder="默认为80" ng-model="antiAttack.web_port" type="number" min="1024" max="65535" ng-pattern="/^[0-9]*[1-9][0-9]*$/"><span class="friendlyMsg">（1024-65535）可不填，默认为80</span>
+                        </div>
+                        <div class="clear"></div>
+                        <div style="margin-top: 20px;margin-left: 190px">
+                            <input type="button" class="btnheight btn btn-primary" ng-click="conf_set()" ng-disabled="antiAttackForm.$invalid" value="保存">
+                            <input type="button" class="btnheight btn btn-danger" value="恢复默认设置" ng-click="conf_set(true)">
+                        </div>
+                    </form>
+                </div>
+                <div class="vlineShow clear"></div>
+                <div class="foot" id="footPage"
+                     style="display:-webkit-flex;justify-content:center;align-items:center;">
+                    <font style="color: #abc;font-size: 12px">Copyright 2016-2019 任子行网络技术股份有限公司</font>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

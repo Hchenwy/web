@@ -1,0 +1,315 @@
+<div class="mainpage_bgc">
+    <div class="overview_mainPageType">
+        <div class="mainpage_head">
+            <img src="assets/images/dhcp.png" class="floatLeft" style="margin-left: 30px">
+
+            <div class="mainpage_name">DHCP配置</div>
+            <div class="mainpage_ename">DHCP&nbsp;Configuration</div>
+        </div>
+        <div class="vlineShow"></div>
+        <div class="tabbable tabbable-custom tabbable-full-width" class="marginTop20">
+            <ul class="nav nav-tabs" style="margin-right: -20px;margin-left: 25px">
+                <li class="active">
+                    <a href="#servicePage" data-toggle="tab">服务端配置</a>
+                </li>
+                <li>
+                    <a href="#staticPage" data-toggle="tab">静态地址分配</a>
+                </li>
+                <li id="dns_tab">
+                    <a href="#dnsPage" data-toggle="tab" ng-click="getMacNect()">客户端列表</a>
+                </li>
+            </ul>
+            <div class="tab-content pageSizeSet" style="height: 100%;overflow-y:auto">
+                <div id="staticPage" class="tab-pane overflow1200">
+                    <div class="pageSizeSet1">
+                        <input class="btn btn-primary" type="button" id="add_static" value="添加静态地址"
+                               ng-click="add_static()">
+                        <input type="button" class="btn btn-danger" id="del_static"
+                               value="删除选中地址" ng-click="delSelectStatic()">
+                    </div>
+                    <div style="margin-right: 40px" class="pageSizeSet">
+                        <div id="staticTab"></div>
+                    </div>
+                </div>
+                <div id="servicePage" class="tab-pane active overflow1200">
+                    <div class="pageSizeSet1">
+                        <div>
+                            <div class="floatLeft">
+                                <font>DHCP开关</font>
+                            </div>
+                            <div style="margin-left: 30px;float: left">
+                                <div id="div1" class="close1">
+                                    <div id="div2" class="close2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="pageSizeSet1">
+                        <input type="button" class="btn btn-primary" id="serviceAdd" ng-click="serviceAdd()"
+                               value="添加DHCP">
+                        <input type="button" class="btn btn-danger" id="servicedel"
+                               value="删除选中DHCP" style="margin-left: 5px" ng-click="delSelectService()">
+
+
+                    </div>
+                    <div style="margin-right: 40px" class="pageSizeSet">
+                        <div id="serviceTab"></div>
+                    </div>
+                </div>
+                <div id="dnsPage" class="tab-pane overflow1200">
+                    <div class="pageSizeSet1">
+                        <div style="float: right;padding:12px 12px">
+                            <div class="floatLeft">
+                                <label><font class="title">基于IP地址查询</font></label>
+                            </div>
+                            <div style="margin-left: 30px;float: left">
+                                <input class="inputSize width185 form-control" type="text" ng-change="selectIp()"
+                                       ng-model="selectValue">
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-right: 40px" class="pageSizeSet">
+                        <div id="macNectTab"></div>
+                    </div>
+                </div>
+                <div class="vlineShow clear"></div>
+                <div class="foot" id="footPage"
+                     style="display:-webkit-flex;justify-content:center;align-items:center;">
+                    <font style="color: #abc;font-size: 12px">Copyright 2016-2019 任子行网络技术股份有限公司</font>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal modal-white" id="static_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 700px">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                        ng-click="get_conf()">&times;</button>
+                <h4 class="modal-title ng-binding">编辑静态地址</h4>
+            </div>
+            <form id="form_static" name="form_static" method="post" class="bs-example form-horizontal form-validation">
+                <div class="clear"></div>
+                <div class="marginTop20" style="display: none">
+                    <font class="title">id</font>
+                    <input class="inputSize floatLeft" id="host_id" name="host_id" ng-model="staticData.host_id"
+                           type="text">
+                </div>
+                <div class="clear"></div>
+                <div class="marginTop20">
+                    <font class="title">客户名称</font>
+                    <input class="inputSize floatLeft width185 form-control" id="name" type="text" name="name"
+                           ng-model="staticData.name" required><span class="friendlyMsg">*</span>
+                <span class="glyphicon glyphicon-ok form-control-feedback"
+                      ng-show="form_static.name.$dirty && form_static.name.$valid"></span>
+                </div>
+                <div class="clear"></div>
+                <div class="marginTop20">
+                    <font class="title">客户端IP</font>
+                    <input class="inputSize floatLeft  width185 form-control" id="ip" type="text" name="ip"
+                           ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/"
+                           ng-model="staticData.ip" required><span class="friendlyMsg">*</span>
+                <span class="glyphicon glyphicon-ok form-control-feedback"
+                      ng-show="form_static.ip.$dirty && form_static.ip.$valid"></span>
+                </div>
+                <div class="clear"></div>
+                <div class="marginTop20">
+                    <font class="title">客户端MAC地址</font>
+                    <input class="inputSize floatLeft  width185 form-control" id="mac" type="text" name="mac"
+                           ng-model="staticData.mac"
+                           ng-pattern="/^[A-Fa-f\d]{2}:[A-Fa-f\d]{2}:[A-Fa-f\d]{2}:[A-Fa-f\d]{2}:[A-Fa-f\d]{2}:[A-Fa-f\d]{2}$/"
+                           required><span class="friendlyMsg">*</span>
+                <span class="glyphicon glyphicon-ok form-control-feedback"
+                      ng-show="form_static.mac.$dirty && form_static.mac.$valid"></span>
+                </div>
+                <div class="clear"></div>
+                <div class="modal-footer">
+                    <input type="submit" class="btnheight btn btn-primary" id="router_btn"
+                           value="确定" ng-disabled="form_static.$invalid" ng-click="editStatic()">
+                    <button type="button" class="btnheight btn btn-danger" data-dismiss="modal" ng-click="get_conf()">
+                        取消
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal modal-white" id="service_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 700px">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                        ng-click="get_conf()">&times;</button>
+                <h4 class="modal-title ng-binding">编辑DHCP</h4>
+            </div>
+            <form id="form_service" name="form_service" method="post"
+                  class="bs-example form-horizontal form-validation">
+                <div class="modal-body clearfix">
+                    <div style="margin-top: 20px;display: none">
+                        <font class="title">id</font>
+                        <input class="interfaceInput width185 form-control" id="pools_id" type="text" name="pools_id"
+                               ng-model="serviceData.pools_id">
+                    </div>
+                    <div class="clear"></div>
+                    <div style="margin-top: 20px;display: none">
+                        <font class="title">id</font>
+                        <input class="interfaceInput width185 form-control" id="pools_edit" type="text"
+                               name="pools_edit" ng-model="serviceData.edit">
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">地址池名称</font>
+                        <input class="interfaceInput width185 form-control" id="pool_name" name="name"
+                               ng-model="serviceData.name" maxlength="10" required><span class="friendlyMsg">*名称长度不能超过10个字符</span>
+                    <span class="glyphicon glyphicon-ok form-control-feedback"
+                          ng-show="form_service.name.$dirty && form_service.name.$valid"></span>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">IP分配网段</font>
+                        <input class="interfaceInput  width185 form-control" id="subnet" name="subnet"
+                               ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/"
+                               ng-model="serviceData.subnet" required><span class="friendlyMsg">*例：192.168.1.0</span>
+                    <span class="glyphicon glyphicon-ok form-control-feedback"
+                          ng-show="form_service.subnet.$dirty && form_service.subnet.$valid"></span>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">子网掩码</font>
+                        <input class="interfaceInput  width185 form-control" id="netmask" name="netmask"
+                               ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/"
+                               ng-model="serviceData.netmask" required><span class="friendlyMsg">*例：255.255.255.0</span>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">地址范围</font>
+                        <input type="button" class="btn btn-info interfaceInput" value="详情配置" ng-click="rangeMsg()">
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">默认网关</font>
+                        <input class="interfaceInput  width185 form-control" id="routers" name="routers"
+                               ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/"
+                               ng-model="serviceData.routers" required><span class="friendlyMsg">*例：192.168.1.1</span>
+                    <span class="glyphicon glyphicon-ok form-control-feedback"
+                          ng-show="form_service.routers.$dirty && form_service.routers.$valid"></span>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">租用时间</font>
+                        <input type="number" class="interfaceInput  width185 form-control" id="lease_time"
+                               name="lease_time" ng-model="serviceData.lease_time" max="525600" min="30"
+                               required><span class="friendlyMsg">分钟*时间应大于30小于525600</span>
+                        <span class="glyphicon glyphicon-ok form-control-feedback"
+                              ng-show="form_service.lease_time.$dirty && form_service.lease_time.$valid"></span>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">首选DNS</font>
+                        <input class="interfaceInput  width185 form-control" id="dns1" name="dns1"
+                               ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/"
+                               ng-model="serviceData.dns1" required><span class="friendlyMsg">*例：192.168.1.1</span>
+                        <span class="glyphicon glyphicon-ok form-control-feedback"
+                              ng-show="form_service.dns1.$dirty && form_service.dns1.$valid"></span>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">备选DNS</font>
+                        <input class="interfaceInput  width185 form-control" id="dns2" name="dns2"
+                               ng-model="serviceData.dns2"
+                               ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/">
+                        <span class="glyphicon glyphicon-ok form-control-feedback"
+                              ng-show="form_service.dns2.$dirty && form_service.dns2.$valid"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btnheight btn btn-primary" id="dialog_resetProduct"
+                            ng-disabled="form_service.$invalid" ng-click="editService()">确定
+                    </button>
+                    <button type="button" class="btnheight btn btn-danger" data-dismiss="modal" id="dialog_cancel"
+                            ng-click="get_conf()">取消
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal modal-white" id="range_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 700px">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title ng-binding">地址范围列表</h4>
+            </div>
+            <div class="modal-body clearfix">
+                <div class="pageSizeSet1">
+                    <input class="btn btn-primary marginTop20" type="button" id="add_range" value="添加地址范围"
+                           ng-click="add_range()">
+                </div>
+                <div class="pageSizeSet">
+                    <div id="rangeTab"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btnheight btn btn-primary" data-dismiss="modal">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal modal-white" id="rangeEdit_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 700px">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title ng-binding">编辑地址范围</h4>
+            </div>
+            <div class="modal-body clearfix">
+                <form id="form_rangeEdit" name="form_rangeEdit" method="post"
+                      class="bs-example form-horizontal form-validation">
+                    <div style="margin-top: 20px;display: none">
+                        <font class="title">range</font>
+                        <input class="interfaceInput width185 form-control" id="range_name" type="text" name="name"
+                               ng-model="rangeData.name">
+                    </div>
+                    <div class="clear"></div>
+                    <div style="margin-top: 20px;display: none">
+                        <font class="title">range</font>
+                        <input class="interfaceInput width185 form-control" id="range_edit" type="text" name="edit"
+                               ng-model="rangeData.edit">
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">开始地址</font>
+                        <input class="interfaceInput width185 form-control" id="start" name="start"
+                               ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/"
+                               ng-model="rangeData.start" required><span class="friendlyMsg">*例：192.168.1.1</span>
+                    </div><span class="glyphicon glyphicon-ok form-control-feedback"
+                                ng-show="form_rangeEdit.start.$dirty && form_rangeEdit.start.$valid"></span>
+
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">结束地址</font>
+                        <input class="interfaceInput  width185 form-control" id="end" name="end"
+                               ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/"
+                               ng-model="rangeData.end" required><span class="friendlyMsg">*例：192.168.1.254</span>
+                         <span class="glyphicon glyphicon-ok form-control-feedback"
+                               ng-show="form_rangeEdit.end.$dirty && form_rangeEdit.end.$valid"></span>
+                    </div>
+                    <div class="clear"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btnheight btn btn-primary" ng-disabled="form_rangeEdit.$invalid"
+                        ng-click="editRange()">确定
+                </button>
+                <button type="button" class="btnheight btn btn-danger" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>

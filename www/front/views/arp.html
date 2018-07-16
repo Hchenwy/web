@@ -1,0 +1,81 @@
+<div class="mainpage_bgc">
+    <div class="overview_mainPageType">
+        <div class="mainpage_head">
+            <img src="assets/images/apr.png" class="floatLeft" style="margin-left: 30px">
+
+            <div class="mainpage_name">APR表项</div>
+            <div class="mainpage_ename">APR&nbsp;Table&nbsp;Entry</div>
+        </div>
+        <div class="vlineShow"></div>
+        <div class="tabbable tabbable-custom tabbable-full-width" class="marginTop20">
+            <ul class="nav nav-tabs" style="margin-right: -20px;margin-left: 25px">
+                <li id="arp_tab" class="active">
+                    <a href="#arpPage" data-toggle="tab">APR表项</a>
+                </li>
+            </ul>
+            <div class="tab-content pageSizeSet" style="height: 100%;overflow-y:auto">
+                <div id="arpPage" class="tab-pane active overflow1200">
+                    <div class="pageSizeSet1">
+                        <input type="button" class="btn btn-primary" id="arpBind"
+                               value="动态>>静态绑定" ng-click="changeSelectStatic()">
+                        <input type="button" class="btn btn-success" id="artficBind"
+                               value="手工静态绑定" ng-click="addConf()">
+                        <input type="button" class="btn btn-danger" id="chanelBind"
+                               value="解除静态绑定" ng-click="delSelectStatic()">
+                        <div style="float: right;padding:12px 12px">
+                            <div class="floatLeft">
+                                <label><font class="title">基于IP或MAC地址查询</font></label>
+                            </div>
+                            <div style="margin-left: 30px;float: left">
+                                <input class="inputSize width185 form-control" type="text" ng-change="selectIp()"
+                                       ng-model="selectValue">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="arpTabPage">
+                        <div style="margin-right: 40px" class="pageSizeSet">
+                            <div id="arpListTab"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="vlineShow clear"></div>
+                <div class="foot" id="footPage"
+                     style="display:-webkit-flex;justify-content:center;align-items:center;">
+                    <font style="color: #abc;font-size: 12px">Copyright 2016-2019 任子行网络技术股份有限公司</font>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal modal-white" id="arp_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 700px">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title ng-binding">单用户手工绑定</h4>
+            </div>
+            <form id="arpEditForm" name="arpEditForm" class="bs-example form-horizontal form-validation">
+                <div class="modal-body clearfix">
+                    <div class="marginTop20">
+                        <font class="title">IP地址</font>
+                        <input class="interfaceInput width185 form-control" name="ip" ng-model="arp.ip" ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/" required><span
+                            class="friendlyMsg">*例：192.168.1.1</span>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="marginTop20">
+                        <font class="title">MAC地址</font>
+                        <input class="interfaceInput width185 form-control" name="mac" ng-model="arp.mac" ng-pattern="/^[A-Fa-f\d]{2}:[A-Fa-f\d]{2}:[A-Fa-f\d]{2}:[A-Fa-f\d]{2}:[A-Fa-f\d]{2}:[A-Fa-f\d]{2}$/" required><span
+                            class="friendlyMsg">*例：A2:B3:C4:D5:E6:F7</span>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btnheight btn btn-primary" ng-click="conf_set('static')" ng-disabled="arpEditForm.$invalid">确定</button>
+                    <button type="button" class="btnheight btn btn-danger" data-dismiss="modal">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

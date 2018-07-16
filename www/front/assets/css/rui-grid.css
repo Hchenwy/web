@@ -1,0 +1,64 @@
+/*
+ * 表格控件样式
+ */
+.rui-grid-row-interval{background:#EEE;}
+.rui-grid-row-hover{background:#ebeffa;}
+.rui-grid-row-selected{background:#fefbdb;}
+.rui-grid-row-disabled{background:#F0F0F0; color:#999 !important;}
+.rui-grid-row-disabled a{color:#999 !important;}
+.rui-grid-row-disabled a:hover{text-decoration:none !important; cursor: default}
+.rui-grid-main{display:block; overflow:visible; border:solid #DDDDDD; border-width:1px 1px 0px 1px; position:relative;}
+.rui-grid-header{display:block; overflow:hidden; background:#f1f7fc}
+.rui-grid-table{border:none; border-collapse:collapse;table-layout:fixed;width:100%;}
+.rui-grid-header-th{border:#E2E2E2;  *border-bottom:0;  border-right:1px solid #DDDDDD;padding:0 5px 0 5px;border-bottom:1px solid #DDDDDD;
+    background:-webkit-linear-gradient(top, #F1F1F1 5%, white 100%);
+    background:-o-linear-gradient(top, #F1F1F1 20%, white 100%);
+    background:-ms-linear-gradient(top, #F1F1F1 20%, white 100%);
+    background:linear-gradient(to bottom, #F1F1F1 20%, #EEE 100%);
+    vertical-align:middle;height:33px;line-height:33px;font-weight:normal;color:black; cursor:default;}
+.rui-grid-header-th-hover{background:#f1f7fc;}
+.rui-grid-header-th .rui-grid-td-div{font-weight:bold;}
+.rui-grid-td-div{white-space: nowrap;overflow: hidden;text-overflow:ellipsis;display:block; word-break:break-all;height:35px;line-height: 35px;}
+.rui-grid-header-multi{width:40px;text-align:center}
+.rui-grid-scroller { display:block; position:relative; overflow:auto;}
+.rui-grid-body-td{color:#676767;text-overflow:ellipsis;font-size:85%;border:1px solid #DDDDDD;border-width:0 0 1px 0;height:34px;padding:0 5px 0 5px; vertical-align:middle; }
+/*.rui-grid-header-asc{background:url(../images/r-grid.gif) no-repeat right -648px #E2E2E2; cursor:pointer}
+.rui-grid-header-des{background:url(../images/r-grid.gif) no-repeat right -686px #E2E2E2; cursor:pointer}*/
+.rui-grid-header-asc{cursor:pointer}
+.rui-grid-header-des{cursor:pointer}
+.rui-grid-header-none{cursor:pointer}
+.rui-grid-main-border{border:#DDDDDD 1px solid;clear: both;}
+/*
+ * 分页控件
+ */
+.rui-page-main{font-size:85%;display:block; overflow:hidden; height:35px; border:solid 1px #DDDDDD;border-top:dashed 1px #DDDDDD; background:#EEE;}
+.rui-page-count{float:right; overflow:hidden; padding:6px 5px 0 10px; }
+.rui-page-count-select{margin:0px 4px;height:24px;}
+.rui-page-nation{ padding-left:43%; margin-top:6px}
+.rui-page-nation-item{float:left;height:24px; padding:0px 5px 0px 5px}
+.rui-page-nation-selected .rui-page-nation-a{color:red; font-weight:bold}
+/*.rui-page-nation-hover,.rui-page-nation-a,.rui-page-nation-span,.rui-page-nation-span-txt{ background:url(../images/r-grid.gif) no-repeat;}*/
+.rui-page-nation-hover {background-position:0 -100px;}
+.rui-page-nation-hover .rui-page-nation-a { background-position:100% -150px; cursor:pointer; text-decoration:none }
+.rui-page-nation-hover .rui-page-nation-a:hover{text-decoration:none}
+.rui-page-nation-jnum .rui-page-nation-a{line-height:22px; padding:0px 5px 0px 0px;}
+.rui-page-nation-span,.rui-page-nation-a,.rui-page-nation-span-txt{display:inline-block; height: 25px; }
+.rui-page-nation-span-txt{padding:0px 5px 0px 5px; line-height:21px; line-height:24px\9; /* ie行高hack */}
+.rui-page-nation-first .rui-page-nation-span-txt { background-position:0 -244px;}
+.rui-page-nation-previous .rui-page-nation-span-txt { background-position:0 -294px;}
+.rui-page-nation-next,.rui-page-nation-last{padding-right:5px}
+.rui-page-nation-next .rui-page-nation-span-txt,.rui-page-nation-last .rui-page-nation-span-txt {padding:0px 5px 0px 0px}
+.rui-page-nation-next .rui-page-nation-span-txt { background-position:100% -345px;}
+.rui-page-nation-last .rui-page-nation-span-txt { background-position:100% -395px;}
+.rui-page-nation-last {margin-right:5px;}
+.rui-page-nation-disabled .rui-page-nation-span, .rui-page-nation-disabled .rui-page-nation-a { background-position:0 100px; cursor:default;}
+.rui-page-nation-disabled .rui-page-nation-span-txt { color:#666;}
+.rui-page-nation-disabled .rui-page-nation-first .rui-page-nation-span-txt { background-position:0 -444px;}
+.rui-page-nation-disabled .rui-page-nation-previous .rui-page-nation-span-txt { background-position:0 -494px;}
+.rui-page-nation-disabled .rui-page-nation-next .rui-page-nation-span-txt { background-position:100% -545px;}
+.rui-page-nation-disabled .rui-page-nation-last .rui-page-nation-span-txt { background-position:100% -595px;}
+.rui-page-nation-disabled .rui-page-nation-last { margin-right:5px;}
+.rui-page-nation-disabled{background:none;}
+.rui-page-nation-jumpto{background:none}
+.rui-page-nation-input{width:30px;height:22px; line-height:22px; text-align:center;vertical-align:middle;}
+.rui-page-nation-goto{display: none;border:1px solid #02659c; background:#008dd5;color:#fff; margin:0px 5px; padding:0px 8px; height:24px; vertical-align: middle; cursor:pointer; overflow:visible}

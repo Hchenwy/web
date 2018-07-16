@@ -1,0 +1,64 @@
+{
+  "auth": {
+    "black_mac": [],
+    "wxerr_rangetime": "3600",
+    "MacPass": "0",
+    "wxwifi": "1",
+    "auth_server": "www.ruijieyun.com",
+    "black_domain": [],
+    "port": "80",
+    "white_domain": [],
+    "ssid": "SURF-GW",
+    "listen_port": "28060",
+    "wxerr_count": "5",
+    "wx_escape": "1",
+    "WD_CheckTime2": "0",
+    "black_ips": [],
+    "enable": "1",
+    "wxerr_restime": "3600",
+    "userescape_time": "3600",
+    "black_ipmark": [],
+    "interface": [
+      "vbr10"
+    ],
+    "black_ip": [],
+    "ios_opt": "0",
+    "wmc_alivetime": "1800",
+    "auth_timeout": "0",
+    "white_mac": [],
+    "white_vlans": [],
+    "white_ips": [],
+    "serv_type": "wmc",
+    "timeout": "30",
+    "brides": [
+      {
+        "ip": "192.168.100.16",
+        "mask": "255.255.255.0",
+        "name": "vbr10"
+      },
+      {
+        "ip": "192.168.121.1",
+        "mask": "255.255.255.0",
+        "name": "vbr121"
+      },
+      {
+        "ip": "10.18.75.107",
+        "mask": "255.255.255.0",
+        "name": "br1"
+      },
+      {
+        "ip": "192.168.1.1",
+        "mask": "255.255.255.0",
+        "name": "vbr18"
+      },
+      {
+        "ip": "192.168.122.1",
+        "mask": "255.255.255.0",
+        "name": "vbr222"
+      }
+    ],
+    "white_ipmark": [],
+    "white_vlan": [],
+    "white_ip": []
+  }
+}

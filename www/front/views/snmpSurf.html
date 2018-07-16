@@ -1,0 +1,81 @@
+<div class="mainpage_bgc">
+    <div class="overview_mainPageType">
+        <div class="mainpage_head">
+            <img src="assets/images/sys_snmpsurf.png" class="floatLeft" style="margin-left: 30px">
+
+            <div class="mainpage_name">用户扫描</div>
+            <div class="mainpage_ename">Scan&nbsp;Users</div>
+        </div>
+        <div class="vlineShow"></div>
+        <div class="tabbable tabbable-custom tabbable-full-width">
+            <ul class="nav nav-tabs" style="margin-right: -20px;margin-left: 25px">
+                <li class="active">
+                    <a href="#snmpPage" data-toggle="tab">主机扫描</a>
+                </li>
+            </ul>
+            <div class="tab-content pageSizeSet" style="height: 100%;overflow-y:auto">
+                <div id="snmpPage" class="pageSizeSet tab-pane active overflow1200">
+                    <div>
+                        <font style="float: left;margin-left: 20px">输入三层交换机IP：</font>
+                        <form id="snmpForm" name="snmpForm" class="form-horizontal form-validation">
+                            <input class="inputSize width185 form-control" type="text" ng-model="sump_ip" name="sump_ip" placeholder="IP地址" ng-pattern="/^(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))\.(\d|[1-9]\d|1\d\d|2([0-4]\d|5[0-5]))$/" required>
+                            <font style="margin-left: 20px">团体名：</font><input class="inputSize width185 form-control" type="text" name="sump_community" ng-model="sump_community" placeholder="为空时默认值为：public">
+                            <input style="margin-left: 20px" type="button" class="btn btn-primary" value="添加" ng-click="add_ip()" ng-disabled="snmpForm.$invalid"><input style="margin-left: 20px" type="button" class="btn btn-danger" value="删除选中" ng-click="delete_ip()">
+                        </form>
+                    </div>
+                    <div>
+                        <div style="margin-right: 40px" class="pageSizeSet">
+                            <div id="snmpTab"></div>
+                        </div>
+                        <!--<div class="marginTop20">-->
+                            <!--<font class="title">三层交换机IP表：</font>-->
+
+                            <!--<div style="margin-left:150px;overflow-y:auto; overflow-x:auto;text-align:left;width: 400px;height: 200px;border:solid 5px #D4D4D4; border-radius:5px; resize:none;"-->
+                                 <!--id="main">-->
+                                <!--<div id="ip_zone"></div>-->
+                                <!--<span id="msg_end" style="overflow:hidden"></span>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+                <div class="vlineShow clear"></div>
+                <div class="foot" id="footPage"
+                     style="display:-webkit-flex;justify-content:center;align-items:center;">
+                    <font style="color: #abc;font-size: 12px">Copyright 2016-2019 任子行网络技术股份有限公司</font>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal modal-white" id="terminalList_dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 700px">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title ng-binding">终端列表</h4>
+            </div>
+            <div class="modal-body clearfix">
+                <div style="float: right;margin-right: 30px">
+                    <div class="floatLeft">
+                        <label><font class="title">基于IP地址查询</font></label>
+                    </div>
+                    <div style="float: left">
+                        <input class="inputSize width185 form-control" type="text" ng-change="selectIp()"
+                               ng-model="selectValue">
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="marginTop20">
+                    <div style="margin-right: 40px" class="pageSizeSet">
+                        <div id="terminalListTab"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btnheight btn btn-primary"  data-dismiss="modal">关闭</button>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<magazine>
+  <MacPass>1</MacPass>
+  <WD_CheckTime2>0</WD_CheckTime2>
+  <auth_server>112.124.31.88</auth_server>
+  <black_domain>www.hao123.com</black_domain>
+  <black_domain>www.douban.com</black_domain>
+  <black_domain>128.145.45.123</black_domain>
+  <black_ip>192.168.121.12</black_ip>
+  <black_ip>192.168.121.13</black_ip>
+  <black_ip>192.168.121.14</black_ip>
+  <black_mac>b0:83:fe:84:12:54</black_mac>
+  <black_mac>b0:83:fe:84:12:56</black_mac>
+  <black_mac>b0:83:fe:84:12:58</black_mac>
+  <enable>1</enable>
+  <interface>br0</interface>
+  <interface>br1</interface>
+  <ios_opt>0</ios_opt>
+  <listen_port>28060</listen_port>
+  <ssid>RUIJIE</ssid>
+  <timeout>30</timeout>
+  <userescape_time>3600</userescape_time>
+  <white_domain>www.baidu.com</white_domain>
+  <white_domain>www.so.com</white_domain>
+  <white_domain>112.136.58.63</white_domain>
+  <white_ip>192.168.111.12</white_ip>
+  <white_ip>192.168.111.13</white_ip>
+  <white_ip>192.168.111.14</white_ip>
+  <white_mac>3c:97:0e:06:53:a8</white_mac>
+  <white_mac>3c:97:0e:06:53:a6</white_mac>
+  <white_mac>3c:97:0e:06:53:a4</white_mac>
+  <wmc_alivetime>1800</wmc_alivetime>
+  <wx_escape>1</wx_escape>
+  <wxerr_count>5</wxerr_count>
+  <wxerr_rangetime>3600</wxerr_rangetime>
+  <wxerr_restime>3600</wxerr_restime>
+  <wxwifi>1</wxwifi>
+</magazine>

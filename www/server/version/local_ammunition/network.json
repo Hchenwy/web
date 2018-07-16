@@ -1,0 +1,65 @@
+{
+    "bridges": [
+        {
+            "name": "br0",
+            "ip": "192.168.1.254",
+            "vlan_switch": "0",
+            "vlan": [
+            ],
+            "mask": "255.255.255.0",
+            "mac": "",
+            "interface": [
+                "eth2",
+                "eth3",
+                "eth4",
+                "eth5"
+            ]
+        }
+    ],
+    "interfaces": [
+        {
+            "ip": "",
+            "mac": "",
+            "mask": "",
+            "name": "eth0",
+            "proto": "dhcp",
+            "username": "ruiyi",
+            "password": "ruiyi",
+            "mtu": 1500,
+            "mode": "nat",
+            "rate": "half_1000"
+
+        },
+        {
+            "ip": "",
+            "mac": "",
+            "mask": "",
+            "name": "eth1",
+            "proto": "dhcp",
+            "username": "ruiyi",
+            "password": "ruiyi",
+            "mtu": 1500,
+            "mode": "nat",
+            "rate": "half_1000"
+        }
+    ],
+    "internal": [
+        "br0"
+    ],
+    "external": [
+        "eth0",
+        "eth1"
+    ],
+    "mode": "gateway",
+    "gateway": "192.168.1.1",
+    "dns_addr": [
+        "114.114.114.114"
+    ],
+    "routes": [
+        {
+            "ip":"0.0.0.0",
+            "mask": "0.0.0.0",
+            "next_route": "192.168.1.1"
+        }
+    ]
+}

@@ -1,0 +1,77 @@
+{
+    "bridges": [
+        {
+            "name": "br0", 
+            "ip": "192.168.1.10", 
+            "vlan": [], 
+            "mask": "255.255.255.0", 
+            "vlan_switch": "0", 
+            "mac": "08:00:27:70:CD:1A", 
+            "interface": [
+                "eth0", 
+                "eth1", 
+                "eth2", 
+                "eth3", 
+                "eth4", 
+                "eth5"
+            ]
+        }
+    ], 
+    "dns_addr": [
+        "8.8.8.8", 
+        "8.8.6.6"
+    ], 
+    "interfaces": [
+        {
+            "ip": "", 
+            "mac": "08:00:27:70:CD:4A", 
+            "mask": "", 
+            "name": "eth0"
+        }, 
+        {
+            "ip": "", 
+            "mac": "08:00:27:70:CD:5A", 
+            "mask": "", 
+            "name": "eth1"
+        }, 
+        {
+            "ip": "", 
+            "mac": "08:00:27:70:CD:6A", 
+            "mask": "", 
+            "name": "eth2"
+        }, 
+        {
+            "ip": "", 
+            "mac": "08:00:27:70:CD:7A", 
+            "mask": "", 
+            "name": "eth3"
+        }, 
+        {
+            "ip": "", 
+            "mac": "08:00:27:70:CD:8A", 
+            "mask": "", 
+            "name": "eth4"
+        }, 
+        {
+            "ip": "", 
+            "mac": "08:00:27:70:CD:9A", 
+            "mask": "", 
+            "name": "eth5"
+        }
+    ], 
+    "internal": [], 
+    "external": [
+        "eth0", 
+        "eth1", 
+        "eth2"
+    ], 
+    "routes": [
+        {
+            "ip": "0.0.0.0", 
+            "next_route": "192.168.1.254", 
+            "mask": "0.0.0.0"
+        }
+    ], 
+    "gateway": "192.168.1.254", 
+    "mode": "bypass"
+}

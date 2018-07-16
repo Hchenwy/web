@@ -1,0 +1,65 @@
+<div class="mainpage_bgc">
+    <div class="overview_mainPageType">
+        <div class="mainpage_head">
+            <img src="assets/images/linkNum.png" class="floatLeft" style="margin-left: 30px">
+
+            <div class="mainpage_name">连接数限制</div>
+            <div class="mainpage_ename">Connection&nbsp;Limit</div>
+        </div>
+        <div class="vlineShow"></div>
+        <div class="tabbable tabbable-custom tabbable-full-width" class="marginTop20">
+            <ul class="nav nav-tabs" style="margin-right: -20px;margin-left: 25px">
+                <li id="linkNum_tab" class="active">
+                    <a href="#linkNumPage" data-toggle="tab">连接数限制</a>
+                </li>
+            </ul>
+            <div class="tab-content pageSizeSet" style="height: 100%;overflow-y:auto">
+                <div id="linkNumPage" class="tab-pane active overflow1200">
+                    <form id="linkNumForm" name="linkNumForm" class="form-horizontal form-validation">
+                        <div class="marginTop15">
+                            <div class="floatLeft">
+                                <font class="title">最大会话数开关</font>
+                            </div>
+                            <div style="margin-left: 10px;float: left" >
+                                <div id="div1" class="close1">
+                                    <div id="div2" class="close2"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="marginTop15">
+                            <font class="title">最大会话数</font>
+                            <input class="interfaceInput floatLeft width185 form-control" ng-disabled="linkNum.max_net_enable" ng-model="linkNum.max_net" type="number" min="0" max="200000" ng-change="maxChange('max_net')" ng-pattern="/^[0-9]*[0-9][0-9]*$/"><span class="friendlyMsg">（0-200000,0为不限制）推荐配置大于100000的值</span>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="marginTop15">
+                            <div class="floatLeft">
+                                <font class="title">每IP最大会话数开关</font>
+                            </div>
+                            <div style="margin-left: 10px;float: left" >
+                                <div id="div3" class="close1">
+                                    <div id="div4" class="close2"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="marginTop15">
+                            <font class="title">每IP最大会话数</font>
+                            <input class="interfaceInput floatLeft width185 form-control" ng-disabled="linkNum.max_ip_enable" ng-model="linkNum.max_ip" type="number" min="0" max="200000" ng-change="maxChange('max_ip')" ng-pattern="/^[0-9]*[0-9][0-9]*$/"><span class="friendlyMsg">（0-200000,0为不限制）推荐配置大于500的值</span>
+                        </div>
+                        <div class="clear"></div>
+                        <div style="margin-top: 20px;margin-left: 190px">
+                            <input type="button" class="btnheight btn btn-primary" ng-disabled="linkNumForm.$invalid" value="保存" ng-click="set_conf()">
+                        </div>
+                    </form>
+                </div>
+                <div class="vlineShow clear"></div>
+                <div class="foot" id="footPage"
+                     style="display:-webkit-flex;justify-content:center;align-items:center;">
+                    <font style="color: #abc;font-size: 12px">Copyright 2016-2019 任子行网络技术股份有限公司</font>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
